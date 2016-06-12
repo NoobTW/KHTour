@@ -3,8 +3,7 @@
 <head>
 	<title>高雄旅遊通</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0" />
-	<script src="https://use.fontawesome.com/a02b878fec.js"></script>
-	<link rel="stylesheet" href="./font-awsome/font-awesome.min.css">
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css" />
 	<link href="./style.css" rel="stylesheet" />
 	<link href="./leaflet.css" rel="stylesheet" />
 	<script src="./leaflet.js"></script>
@@ -17,23 +16,21 @@
 			<div id="logo">高雄旅遊通</div>
 			<nav>
 				<ul>
-					<li><div class="fa fa-heart" aria-hidden="true" id="like">
+					<li><div class="fa fa-heart" id="like">
 						<ul>
 							<li>123</li>
 							<li>456</li>
 							<li>789</li>
 						</ul>
 					</div></li>
-					<li>
-					<div class="fa fa-map" aria-hidden="true" id="route">
+					<li><div class="fa fa-map" id="route">
 						<ul>
 							<li>123</li>
 							<li>456</li>
 							<li>789</li>
 						</ul>
-					</div>
-					</li>
-					<li><div class="fa fa-facebook-official fa-lg" aria-hidden="true" id="facebook"></div></li>
+					</div></li>
+					<li><div class="fa fa-facebook-official" id="facebook"></div></li>
 				</ul>
 			</nav>
 		</header>

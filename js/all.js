@@ -29,6 +29,7 @@ function handleGetCurrentPosition(location){
 }
 
 function onError(){
+	mapScale+=2;
 	var map = L.map('map').setView([22.630459,120.300994], mapScale);
 
 	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
