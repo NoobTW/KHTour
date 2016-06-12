@@ -42,6 +42,7 @@ if(deviceWidth > 768){
 }else{
 	mapScale = 9;
 }
+var isMapAvailable = false;
 
 function handleGetCurrentPosition(location){
 	var city = "";
@@ -50,7 +51,7 @@ function handleGetCurrentPosition(location){
 
 		$('#currentLocation').text('目前位置：' + data.results[0].formatted_address);
 	})
-
+	isMapAvailable = true;
 	getMap(location.coords.latitude, location.coords.longitude);
 }
 
@@ -77,6 +78,21 @@ function getMap(latitude, longitude){
 		id: 'noobtw.popp1a5n',
 		accessToken: 'pk.eyJ1Ijoibm9vYnR3IiwiYSI6ImNpZ2pnbG0weTAwNDF1cmtybDdrcTlrZ2cifQ.Nngw5M7DBbJau65SRuUa7g'
 	}).addTo(map);
+	
+	if(isMapAvailable) {
+		L.popup()
+		.setLatLng([latitude, longitude])
+		.setContent("現在位置")
+		.openOn(map);
+	}
+}
+
+function loadAttraction(){
+	
+}
+
+function loadRestaurant(){
+	
 }
 
 var isFacebookLogin = false;
