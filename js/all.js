@@ -3,6 +3,32 @@ $(function(){
 	if(navigator.geolocation){
 		navigator.geolocation.getCurrentPosition(handleGetCurrentPosition, onError);
 	}
+	
+	$('#showList').click(function(event) {
+		if ($(this).html()==='清單顯示') {
+			$(this).html('地圖顯示');
+		}else{
+			$(this).html('清單顯示');
+		}
+	});
+
+	$('#findAttraction').click(function(event) {
+		if ($(this).html()==='找景點') {
+			$(this).html('找餐飲');
+		}else{
+			$(this).html('找景點');
+		}
+	});
+	
+	$('#facebook').click(function(){
+		FB.login(function(response){
+			statusChangeCallback(response);
+		});
+	});
+	
+	$('#facebook').on('hover mousehover', function(){
+		
+	});
 });
 
 var mapScale = 11;
@@ -53,21 +79,43 @@ function getMap(latitude, longitude){
 	}).addTo(map);
 }
 
-$(document).ready(function(){
-	$('#showList').click(function(event) {
-		if ($(this).html()==='清單顯示') {
-			$(this).html('地圖顯示');
-		}else{
-			$(this).html('清單顯示');
-		}
+var isFacebookLogin = false;
+var user = [];
+
+(function(d, s, id) {
+	var js, fjs = d.getElementsByTagName(s)[0];
+	if (d.getElementById(id)) return;
+	js = d.createElement(s); js.id = id;
+	js.src = "//connect.facebook.net/en_US/sdk.js";
+	fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
+	window.fbAsyncInit = function() {
+		FB.init({
+		appId      : '766234450180135',
+		cookie     : true,
+		xfbml      : true,
+		version    : 'v2.5'
+	});
+	FB.getLoginStatus(function(response) {
+		statusChangeCallback(response);
 	});
 
-	$('#findAttraction').click(function(event) {
-		if ($(this).html()==='找景點') {
-			$(this).html('找餐飲');
-		}else{
-			$(this).html('找景點');
-		}
-	});
-})
+};
 
+function statusChangeCallback(response) {
+	if (response.status === 'connected') {
+		isFacebookLogin = true;
+		FB.api('/me', function(response) {
+			user = response;
+			FB.api('/me/picture?width=50&height=50', function(response){
+				$('#facebook').parent().html('<img src="' + response.data.url + '" />');
+			})
+		});
+	} else if (response.status === 'not_authorized') {
+
+	} else {
+	  
+
+	}
+}

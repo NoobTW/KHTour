@@ -78,12 +78,14 @@ nav{
 	position: absolute;
 	top: 0;
 	right: 0;
+	text-align: center;
 }
 
 nav li{
 	height: 50px;
 	float: left;
 	cursor: pointer;
+	overflow: hidden;
 }
 
 .nav{
