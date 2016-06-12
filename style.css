@@ -1,0 +1,124 @@
+a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,caption,center,cite,code,dd,del,details,dfn,div,dl,dt,em,embed,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,html,i,iframe,img,ins,kbd,label,legend,li,mark,menu,nav,object,ol,output,p,pre,q,ruby,s,samp,section,small,span,strike,strong,sub,summary,sup,table,tbody,td,tfoot,th,thead,time,tr,tt,u,ul,var,video{margin:0;padding:0;border:0;vertical-align:baseline;}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block;}body{margin:0;line-height:1;}ol,ul{list-style:none;}blockquote,q{quotes:none;}blockquote:after,blockquote:before,q:after,q:before{content:'';content:none;}table{border-collapse:collapse;border-spacing:0;}*{-webkit-margin-before:0;-webkit-margin-after:0;-webkit-margin-start:0;-webkit-margin-end:0;margin:0;}
+
+body, html{
+}
+
+.wrapper{
+	text-align: center;
+	width: 100%;
+	max-width: 700px;
+	margin: 0 auto;
+}
+
+header{
+	background: #333;
+	font-size: 2rem;
+	color: lightblue;
+	line-height: 50px;
+	height: 50px;
+	position: relative;
+}
+
+@media screen and (max-width: 420px){
+	header{
+		text-align: left;
+		padding-left: .5rem;
+	}
+}
+
+section{
+	padding: 1rem;
+}
+
+.full{
+	margin: 0;
+	padding: 0;
+}
+
+nav{
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+nav li{
+	height: 50px;
+	float: left;
+}
+
+.nav{
+	height: 50px;
+	width: 50px;
+	font-size: 0;
+}
+
+#like{
+	background: red;
+}
+
+#route{
+	background: green;
+}
+
+#facebook{
+	background: blue;
+}
+
+.search{
+	background: #7f7;
+}
+
+input[type="text"]{
+	border: 1px solid black;
+	border-radius: 2px;
+	padding: .5rem 1rem;
+}
+
+input[type="submit"]{
+	background: violet;
+	border: 0;
+	border-radius: 5px;
+	padding: .5rem .5rem;
+	margin: .5rem;
+}
+
+#search{
+	width: 50%;
+}
+
+.hot_search{
+	color: #777;
+}
+
+.options{
+	background: violet;
+}
+
+.opt_left{
+	float: left;
+}
+
+.opt_right{
+	float: right;
+}
+
+.button{
+	padding: .5rem;
+	display: inline-block;
+}
+
+#showList{
+	background: pink;
+}
+
+#findAttraction{
+	background: yellow;
+}
+
+#sortByPopularity{
+	background: white;
+}
+
+.clear{
+	clear: both;
+}
