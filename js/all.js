@@ -15,10 +15,10 @@ $(function(){
 	$('#findAttraction').click(function(event) {
 		if ($(this).html()==='找景點') {
 			$(this).html('找餐飲');
-			loadRestaurant();
+			loadAttraction();
 		}else{
 			$(this).html('找景點');
-			loadAttraction();
+			loadRestaurant();
 		}
 	});
 	
