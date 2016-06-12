@@ -3,6 +3,22 @@ $(function(){
 	if(navigator.geolocation){
 		navigator.geolocation.getCurrentPosition(handleGetCurrentPosition, onError);
 	}
+	
+	$('#showList').click(function(event) {
+		if ($(this).html()==='清單顯示') {
+			$(this).html('地圖顯示');
+		}else{
+			$(this).html('清單顯示');
+		}
+	});
+
+	$('#findAttraction').click(function(event) {
+		if ($(this).html()==='找景點') {
+			$(this).html('找餐飲');
+		}else{
+			$(this).html('找景點');
+		}
+	});
 });
 
 var mapScale = 11;
@@ -21,7 +37,7 @@ function handleGetCurrentPosition(location){
 	var city = "";
 	var country = "";
 	$.getJSON('https://maps.google.com/maps/api/geocode/json?latlng='+location.coords.latitude+','+location.coords.longitude+'&language=zh-TW&sensor=true', function(data){
-		
+
 		$('#currentLocation').text('目前位置：' + data.results[0].formatted_address);
 	})
 

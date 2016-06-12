@@ -1,8 +1,5 @@
 a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,caption,center,cite,code,dd,del,details,dfn,div,dl,dt,em,embed,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,html,i,iframe,img,ins,kbd,label,legend,li,mark,menu,nav,object,ol,output,p,pre,q,ruby,s,samp,section,small,span,strike,strong,sub,summary,sup,table,tbody,td,tfoot,th,thead,time,tr,tt,u,ul,var,video{margin:0;padding:0;border:0;vertical-align:baseline;}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block;}body{margin:0;line-height:1;}ol,ul{list-style:none;}blockquote,q{quotes:none;}blockquote:after,blockquote:before,q:after,q:before{content:'';content:none;}table{border-collapse:collapse;border-spacing:0;}*{-webkit-margin-before:0;-webkit-margin-after:0;-webkit-margin-start:0;-webkit-margin-end:0;margin:0;}
 
-body, html{
-}
-
 .wrapper{
 	text-align: center;
 	width: 100%;
@@ -11,9 +8,9 @@ body, html{
 }
 
 header{
-	background: #333;
+	background:#000000;
 	font-size: 2rem;
-	color: lightblue;
+	color: #5B9BD6;
 	line-height: 50px;
 	height: 50px;
 	position: relative;
@@ -44,6 +41,7 @@ nav{
 nav li{
 	height: 50px;
 	float: left;
+	cursor: pointer;
 }
 
 .nav{
@@ -53,19 +51,63 @@ nav li{
 }
 
 #like{
-	background: red;
+	display: block;
+	line-height: 50px;
+	height: 50px;
+	width: 50px;
+	color:#ffffff;
+	background: #808080;
+	background: #C75C5C;
+}
+#like ul{
+	display: none;
+
 }
 
+#like ul li{
+	width: 100px;
+	background: red;
+	border-bottom: 1px #000000 solid
+}
+
+#like:hover > ul{
+	display: block;
+}
 #route{
-	background: green;
+	display: block;
+	line-height: 50px;
+	height: 50px;
+	width: 50px;
+	color:#ffffff;
+	background: #808080;
+}
+
+#route ul{
+	display: none;
+
+}
+
+#route ul li{
+	width: 100px;
+	background: red;
+	border-bottom: 1px #000000 solid
+}
+
+#route:hover > ul{
+	display: block;
 }
 
 #facebook{
-	background: blue;
+	display: block;
+	line-height: 50px;
+	height: 50px;
+	width: 50px;
+	color:#ffffff;
+	background: #3B5998
 }
 
 .search{
-	background: #7f7;
+	background:#999999;
 }
 
 input[type="text"]{
@@ -75,7 +117,8 @@ input[type="text"]{
 }
 
 input[type="submit"]{
-	background: violet;
+	background: #5EA4EB;
+	color: #ffffff;
 	border: 0;
 	border-radius: 5px;
 	padding: .5rem .5rem;
@@ -87,11 +130,11 @@ input[type="submit"]{
 }
 
 .hot_search{
-	color: #777;
+	color: #000000;
 }
 
 .options{
-	background: violet;
+	background: #5EA4EB;
 }
 
 .opt_left{
@@ -108,15 +151,35 @@ input[type="submit"]{
 }
 
 #showList{
-	background: pink;
+	background: #FF3399;
+	color: #ffffff;
+	cursor: default;
+}
+
+#showList:hover{
+	background: #000000;
+	color: #ffffff;
 }
 
 #findAttraction{
-	background: yellow;
+	background: #DF9E61;
+	color: #ffffff;
+	cursor: default;
+}
+
+#findAttraction:hover{
+	background: #000000;
+	color: #ffffff;
 }
 
 #sortByPopularity{
 	background: white;
+	padding: 0;
+}
+
+#sortByPopularity select{
+	padding: .5rem;
+	border: none;
 }
 
 .clear{

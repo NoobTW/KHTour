@@ -3,6 +3,8 @@
 <head>
 	<title>高雄旅遊通</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0" />
+	<script src="https://use.fontawesome.com/a02b878fec.js"></script>
+	<link rel="stylesheet" href="./font-awsome/font-awesome.min.css">
 	<link href="./style.css" rel="stylesheet" />
 	<link href="./leaflet.css" rel="stylesheet" />
 	<script src="./leaflet.js"></script>
@@ -15,9 +17,23 @@
 			<div id="logo">高雄旅遊通</div>
 			<nav>
 				<ul>
-					<li><div class="nav" id="like">Like</div></li>
-					<li><div class="nav" id="route">Route</div></li>
-					<li><div class="nav" id="facebook">Facebook</div></li>
+					<li><div class="fa fa-heart" aria-hidden="true" id="like">
+						<ul>
+							<li>123</li>
+							<li>456</li>
+							<li>789</li>
+						</ul>
+					</div></li>
+					<li>
+					<div class="fa fa-map" aria-hidden="true" id="route">
+						<ul>
+							<li>123</li>
+							<li>456</li>
+							<li>789</li>
+						</ul>
+					</div>
+					</li>
+					<li><div class="fa fa-facebook-official fa-lg" aria-hidden="true" id="facebook"></div></li>
 				</ul>
 			</nav>
 		</header>
@@ -31,13 +47,20 @@
 				<div class="button" id="findAttraction">找景點</div>
 			</div>
 			<div class="opt_right">
-				<div class="button" id="sortByPopularity">依人氣排列</div>
+				<div class="button" id="sortByPopularity">
+				<select name="" id="">
+					<option value="">依人氣排列</option>
+					<option value="">依評分排列</option>
+					<option value="">依遠近</option>
+				</select>
+
+				</div>
 			</div>
 			<div class="clear"></div>
 			<div id="currentLocation"></div>
 		</section>
 		<section class="content" id="map">
-		
+
 		</section>
 	</div>
 </body>
