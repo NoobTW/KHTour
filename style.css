@@ -165,10 +165,12 @@ input[type="submit"]{
 
 #showList{
 	background: #FF3399;
+	color: #ffffff;
 }
 
 #findAttraction{
 	background: #DF9E61;
+	color: #ffffff;
 }
 
 #sortByPopularity{

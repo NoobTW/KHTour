@@ -3,10 +3,10 @@
 <head>
 	<title>高雄旅遊通</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0" />
+	<script src="https://use.fontawesome.com/a02b878fec.js"></script>
 	<link rel="stylesheet" href="./font-awsome/font-awesome.min.css">
 	<link href="./style.css" rel="stylesheet" />
 	<link href="./leaflet.css" rel="stylesheet" />
-	<script src="https://use.fontawesome.com/a02b878fec.js"></script>
 	<script src="./leaflet.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script src="./js/all.js"></script>
