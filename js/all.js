@@ -3,22 +3,6 @@ $(function(){
 	if(navigator.geolocation){
 		navigator.geolocation.getCurrentPosition(handleGetCurrentPosition, onError);
 	}
-	
-	$('#showList').click(function(event) {
-		if ($(this).html()==='清單顯示') {
-			$(this).html('地圖顯示');
-		}else{
-			$(this).html('清單顯示');
-		}
-	});
-
-	$('#findAttraction').click(function(event) {
-		if ($(this).html()==='找景點') {
-			$(this).html('找餐飲');
-		}else{
-			$(this).html('找景點');
-		}
-	});
 });
 
 var mapScale = 11;
@@ -67,4 +51,22 @@ function getMap(latitude, longitude){
 		accessToken: 'pk.eyJ1Ijoibm9vYnR3IiwiYSI6ImNpZ2pnbG0weTAwNDF1cmtybDdrcTlrZ2cifQ.Nngw5M7DBbJau65SRuUa7g'
 	}).addTo(map);
 }
+
+$(document).ready(function(){
+	$('#showList').click(function(event) {
+		if ($(this).html()==='清單顯示') {
+			$(this).html('地圖顯示');
+		}else{
+			$(this).html('清單顯示');
+		}
+	});
+
+	$('#findAttraction').click(function(event) {
+		if ($(this).html()==='找景點') {
+			$(this).html('找餐飲');
+		}else{
+			$(this).html('找景點');
+		}
+	});
+})
 
