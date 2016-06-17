@@ -122,18 +122,18 @@ function loadAttraction(){
 		map.removeLayer(markerRestaurant[i]);
 	}
 
-	$.get( "./loadAttraction.php", function( data ) {
-		data=$.parseJSON( data);
+	$.get( "./api/getAttraction.php", function( data ) {
+		data=$.parseJSON(data);
 		var i=0;
 		markerAttraction = [];
 		markerAttraction = [];
 		for(i=0;i<data.length;i++){
 
-			var latitude = parseFloat(data[i].att_py);
-			var longitude = parseFloat(data[i].att_px);
+			var latitude = parseFloat(data[i].Py);
+			var longitude = parseFloat(data[i].Px);
 
 			markerAttraction.push(L.marker([latitude, longitude]).addTo(map));
-			popupAttraction.push(markerAttraction[i].bindPopup(data[i].att_name))
+			popupAttraction.push(markerAttraction[i].bindPopup(data[i].Name))
 		}
 	});
 }
@@ -145,32 +145,19 @@ function loadRestaurant(){
 	for(var i=0;i<markerRestaurant.length;i++){
 		map.removeLayer(markerRestaurant[i]);
 	}
-	// $.getJSON('https://data.kaohsiung.gov.tw/Opendata/DownLoad.aspx?Type=2&CaseNo1=AV&CaseNo2=2&FileType=1&Lang=C&FolderType', function(data){
-	// 	var i=0;
-	// 	markerRestaurant = [];
-	// 	popupRestaurant = [];
-	// 	for(i=0;i<data.length;i++){
 
-	// 		var latitude = parseFloat(data[i].Py);
-	// 		var longitude = parseFloat(data[i].Px);
-
-	// 		markerRestaurant.push(L.marker([latitude, longitude]).addTo(map));
-	// 		popupRestaurant.push(markerRestaurant[i].bindPopup(data[i].Name))
-	// 	}
-	// });
-
-	$.get( "./loadRestaurant.php", function( data ) {
-		data=$.parseJSON( data);
+	$.get( "./api/getRestaurant.php", function( data ) {
+		data=$.parseJSON(data);
 		var i=0;
 		markerAttraction = [];
 		markerAttraction = [];
 		for(i=0;i<data.length;i++){
 
-			var latitude = parseFloat(data[i].res_py);
-			var longitude = parseFloat(data[i].res_px);
+			var latitude = parseFloat(data[i].py);
+			var longitude = parseFloat(data[i].px);
 
 			markerAttraction.push(L.marker([latitude, longitude]).addTo(map));
-			popupAttraction.push(markerAttraction[i].bindPopup(data[i].res_name))
+			popupAttraction.push(markerAttraction[i].bindPopup(data[i].name))
 		}
 	});
 }
