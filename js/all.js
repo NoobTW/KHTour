@@ -3,7 +3,7 @@ $(function(){
 	if(navigator.geolocation){
 		navigator.geolocation.getCurrentPosition(handleGetCurrentPosition, onError);
 	}
-	
+
 	$('#showList').click(function(event) {
 		if ($(this).html()==='清單顯示') {
 			$(this).html('地圖顯示');
@@ -21,7 +21,7 @@ $(function(){
 			loadRestaurant();
 		}
 	});
-	
+
 	$('#facebook').click(function(){
 		FB.login(function(response){
 			statusChangeCallback(response);
@@ -81,14 +81,14 @@ function getMap(latitude, longitude){
 		id: 'noobtw.popp1a5n',
 		accessToken: 'pk.eyJ1Ijoibm9vYnR3IiwiYSI6ImNpZ2pnbG0weTAwNDF1cmtybDdrcTlrZ2cifQ.Nngw5M7DBbJau65SRuUa7g'
 	}).addTo(map);
-	
+
 	if(isMapAvailable) {
 		L.popup()
 		.setLatLng([latitude, longitude])
 		.setContent("現在位置")
 		.openOn(map);
 	}
-	
+
 	loadRestaurant();
 }
 
@@ -104,12 +104,36 @@ function loadAttraction(){
 		markerAttraction = [];
 		markerAttraction = [];
 		for(i=0;i<data.length;i++){
-			
+
 			var latitude = parseFloat(data[i].Py);
 			var longitude = parseFloat(data[i].Px);
-			
+
 			markerAttraction.push(L.marker([latitude, longitude]).addTo(map));
 			popupAttraction.push(markerAttraction[i].bindPopup(data[i].Name))
+		}
+	});
+}
+
+function loadAttraction(){
+	for(var i=0;i<markerAttraction.length;i++){
+		map.removeLayer(markerAttraction[i]);
+	}
+	for(var i=0;i<markerRestaurant.length;i++){
+		map.removeLayer(markerRestaurant[i]);
+	}
+
+	$.get( "./loadAttraction.php", function( data ) {
+		data=$.parseJSON( data);
+		var i=0;
+		markerAttraction = [];
+		markerAttraction = [];
+		for(i=0;i<data.length;i++){
+
+			var latitude = parseFloat(data[i].att_py);
+			var longitude = parseFloat(data[i].att_px);
+
+			markerAttraction.push(L.marker([latitude, longitude]).addTo(map));
+			popupAttraction.push(markerAttraction[i].bindPopup(data[i].att_name))
 		}
 	});
 }
@@ -121,17 +145,32 @@ function loadRestaurant(){
 	for(var i=0;i<markerRestaurant.length;i++){
 		map.removeLayer(markerRestaurant[i]);
 	}
-	$.getJSON('https://data.kaohsiung.gov.tw/Opendata/DownLoad.aspx?Type=2&CaseNo1=AV&CaseNo2=2&FileType=1&Lang=C&FolderType', function(data){
+	// $.getJSON('https://data.kaohsiung.gov.tw/Opendata/DownLoad.aspx?Type=2&CaseNo1=AV&CaseNo2=2&FileType=1&Lang=C&FolderType', function(data){
+	// 	var i=0;
+	// 	markerRestaurant = [];
+	// 	popupRestaurant = [];
+	// 	for(i=0;i<data.length;i++){
+
+	// 		var latitude = parseFloat(data[i].Py);
+	// 		var longitude = parseFloat(data[i].Px);
+
+	// 		markerRestaurant.push(L.marker([latitude, longitude]).addTo(map));
+	// 		popupRestaurant.push(markerRestaurant[i].bindPopup(data[i].Name))
+	// 	}
+	// });
+
+	$.get( "./loadRestaurant.php", function( data ) {
+		data=$.parseJSON( data);
 		var i=0;
-		markerRestaurant = [];
-		popupRestaurant = [];
+		markerAttraction = [];
+		markerAttraction = [];
 		for(i=0;i<data.length;i++){
-			
-			var latitude = parseFloat(data[i].Py);
-			var longitude = parseFloat(data[i].Px);
-			
-			markerRestaurant.push(L.marker([latitude, longitude]).addTo(map));
-			popupRestaurant.push(markerRestaurant[i].bindPopup(data[i].Name))
+
+			var latitude = parseFloat(data[i].res_py);
+			var longitude = parseFloat(data[i].res_px);
+
+			markerAttraction.push(L.marker([latitude, longitude]).addTo(map));
+			popupAttraction.push(markerAttraction[i].bindPopup(data[i].res_name))
 		}
 	});
 }
@@ -172,7 +211,7 @@ function statusChangeCallback(response) {
 	} else if (response.status === 'not_authorized') {
 
 	} else {
-	  
+
 
 	}
 }
@@ -180,9 +219,9 @@ function statusChangeCallback(response) {
 function parseXml(xml) {
 	var dom = null;
 	if (window.DOMParser) {
-		try { 
-			dom = (new DOMParser()).parseFromString(xml, "text/xml"); 
-		} 
+		try {
+			dom = (new DOMParser()).parseFromString(xml, "text/xml");
+		}
 		catch (e) { dom = null; }
 	}else if (window.ActiveXObject) {
 		try {
@@ -191,7 +230,7 @@ function parseXml(xml) {
 			if (!dom.loadXML(xml)) // parse error ..
 
 				console.log(dom.parseError.reason + dom.parseError.srcText);
-		} 
+		}
 		catch (e) { dom = null; }
 	}
 	else
