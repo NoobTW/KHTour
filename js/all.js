@@ -122,8 +122,7 @@ function loadAttraction(){
 		map.removeLayer(markerRestaurant[i]);
 	}
 
-	$.get( "./api/getAttraction.php", function( data ) {
-		data=$.parseJSON(data);
+	$.getJSON( "./api/getAttraction.php", function( data ) {
 		var i=0;
 		markerAttraction = [];
 		markerAttraction = [];
@@ -146,18 +145,17 @@ function loadRestaurant(){
 		map.removeLayer(markerRestaurant[i]);
 	}
 
-	$.get( "./api/getRestaurant.php", function( data ) {
-		data=$.parseJSON(data);
+	$.getJSON( "./api/getRestaurant.php", function( data ) {
 		var i=0;
 		markerAttraction = [];
 		markerAttraction = [];
 		for(i=0;i<data.length;i++){
 
-			var latitude = parseFloat(data[i].py);
-			var longitude = parseFloat(data[i].px);
+			var latitude = parseFloat(data[i].Py);
+			var longitude = parseFloat(data[i].Px);
 
 			markerAttraction.push(L.marker([latitude, longitude]).addTo(map));
-			popupAttraction.push(markerAttraction[i].bindPopup(data[i].name))
+			popupAttraction.push(markerAttraction[i].bindPopup(data[i].Name))
 		}
 	});
 }

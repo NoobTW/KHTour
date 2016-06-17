@@ -18,7 +18,7 @@ function removePrefix(array $input) {
     $return = array();
     foreach ($input as $key => $value) {
         if (strpos($key, 'att_') === 0)
-            $key = substr($key, 13);
+            $key = substr($key, 4);
 
         if (is_array($value))
             $value = removePrefix($value); 
