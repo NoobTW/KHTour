@@ -62,7 +62,9 @@ $(function(){
 	$('#search').keypress(function(e){
 		if(e.which == 13) search($('#search').val());
 	});
-	
+	$('#search').on('input', function(){
+		$('.card').show();
+	})
 	$('body').delegate('.card', 'click', function(){
 		openCard($(this));
 	})
@@ -156,8 +158,8 @@ function loadAttraction(){
 	}
 	$('#list').html('');
 
-	//$.getJSON( "./api/getAttraction.php", function( data ) {
-	$.getJSON("https://data.kaohsiung.gov.tw/Opendata/DownLoad.aspx?Type=2&CaseNo1=AV&CaseNo2=2&FileType=1&Lang=C&FolderType", function(data){
+	$.getJSON( "./api/getAttraction.php", function( data ) {
+	//$.getJSON("https://data.kaohsiung.gov.tw/Opendata/DownLoad.aspx?Type=2&CaseNo1=AV&CaseNo2=2&FileType=1&Lang=C&FolderType", function(data){
 		dataAttraction = data;
 		var i=0;
 		markerAttraction = [];
@@ -198,8 +200,8 @@ function loadRestaurant(){
 	}
 	$('#list').html('');
 
-	//$.getJSON( "./api/getRestaurant.php", function( data ) {
-	$.getJSON("https://data.kaohsiung.gov.tw/Opendata/DownLoad.aspx?Type=2&CaseNo1=AV&CaseNo2=1&FileType=1&Lang=C&FolderType=", function(data){
+	$.getJSON( "./api/getRestaurant.php", function( data ) {
+	//$.getJSON("https://data.kaohsiung.gov.tw/Opendata/DownLoad.aspx?Type=2&CaseNo1=AV&CaseNo2=1&FileType=1&Lang=C&FolderType=", function(data){
 		dataRestaurant = data;
 		var i=0;
 		markerRestaurant = [];
@@ -235,7 +237,7 @@ function search(keyword){
 			if(dataAttraction[i].Name == keyword){
 				isFind = true;
 				lng = dataAttraction[i].Px;
-				lat = dataAttraction[i].py;
+				lat = dataAttraction[i].Py;
 				map.closePopup();
 				markerAttraction[i].openPopup();
 				break;
@@ -256,6 +258,9 @@ function search(keyword){
 		if(isFind){
 			map.panTo(new L.LatLng(lat, lng));
 			map.setZoom(17);
+			$('.card').filter(function(){
+				return $(this).find('.card_title').text() == keyword;
+			}).show().siblings().hide();
 		}
 	}
 }
