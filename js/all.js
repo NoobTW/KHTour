@@ -152,32 +152,9 @@ function loadAttraction(){
 			markerAttraction.push(L.marker([latitude, longitude]).addTo(map));
 			popupAttraction.push(markerAttraction[i].bindPopup(data[i].Name))
 			
-			$('#list').append(' \
-			<h3>' + data[i].Name + '</h3> \
-			<div class="card"> \
-				<div class="pic"> \
-					<img src="' + data[i].Picture1 + '"alt="" /> \
-				</div> \
-				<div class="descrip"> \
-					<div class="rate star-rating"> \
-						<input type="radio" name="example" class="rating" value="1" /> \
-						<input type="radio" name="example" class="rating" value="2" /> \
-						<input type="radio" name="example" class="rating" value="3" /> \
-						<input type="radio" name="example" class="rating" value="4" /> \
-						<input type="radio" name="example" class="rating" value="5" /> \
-					</div> \
-					<p class="address">' + data[i].Add + '</p> \
-					<p class="illustrate"> \
-						'+ data[i].Toldescribe +' \
-					</p> \
-				</div> \
-				<div class="clear"></div> \
-			</div>');
+			
 		}
-		$('.star-rating').rating();
-		$('#list').accordion({
-			collapsible: false, activate: false, heightStyle: "content"
-		});
+		
 	});
 }
 
@@ -205,32 +182,8 @@ function loadRestaurant(){
 			markerRestaurant.push(L.marker([latitude, longitude], {icon: redMarker}).addTo(map));
 			popupRestaurant.push(markerRestaurant[i].bindPopup(data[i].Name))
 			
-			$('#list').append(' \
-			<h3>' + data[i].Name + '</h3> \
-			<div class="card"> \
-				<div class="pic"> \
-					<img src="' + data[i].Picture1 + '"alt="" /> \
-				</div> \
-				<div class="descrip"> \
-					<div class="rate star-rating"> \
-						<input type="radio" name="example" class="rating" value="1" /> \
-						<input type="radio" name="example" class="rating" value="2" /> \
-						<input type="radio" name="example" class="rating" value="3" /> \
-						<input type="radio" name="example" class="rating" value="4" /> \
-						<input type="radio" name="example" class="rating" value="5" /> \
-					</div> \
-					<p class="address">' + data[i].Add + '</p> \
-					<p class="illustrate"> \
-						'+ data[i].Description +' \
-					</p> \
-				</div> \
-				<div class="clear"></div> \
-			</div>');
+			
 		}
-		/*$('.star-rating').rating();
-		$('#list').accordion({
-			collapsible: true,activate: false
-		});*/
 	});
 }
 
