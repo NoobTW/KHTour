@@ -35,9 +35,13 @@ $(function(){
 			statusChangeCallback(response);
 		});
 	});
-	$.getJSON("./api/getSearchResult.php", function(res){
-		$("#search").autocomplete({source: res});
-	});
+	$.getJSON('./api/getSearchResult.php', function(res){
+		console.log(res);
+		$("#search").autocomplete({
+			source: res
+		});
+	})
+	$("#search").autocomplete({source: './api/getSearchResult.php'});
 
 });
 

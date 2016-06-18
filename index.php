@@ -4,7 +4,6 @@
 	<title>高雄旅遊通</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0" />
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css" />
-	<link rel="stylesheet" href="./api/jquery-ui-1.11.4/jquery-ui.min.css" />
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css" />
 	<link rel="stylesheet" href="./css/leaflet.awesome-markers.css" />
 	<link rel="stylesheet" href="./css/leaflet.css"/>
