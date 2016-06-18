@@ -254,3 +254,7 @@ input[type="submit"]:active{
 .clear{
 	clear: both;
 }
+
+.ui-autocomplete {
+  z-index: 1000;
+}

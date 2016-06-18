@@ -27,6 +27,9 @@ $(function(){
 			statusChangeCallback(response);
 		});
 	});
+	var searchresult=".././api/load_search_result.php";
+	$("#search").autocomplete({source: searchresult});
+
 });
 
 var mapScale = 11;
@@ -90,28 +93,6 @@ function getMap(latitude, longitude){
 	}
 
 	loadRestaurant();
-}
-
-function loadAttraction(){
-	for(var i=0;i<markerAttraction.length;i++){
-		map.removeLayer(markerAttraction[i]);
-	}
-	for(var i=0;i<markerRestaurant.length;i++){
-		map.removeLayer(markerRestaurant[i]);
-	}
-	$.getJSON('https://data.kaohsiung.gov.tw/Opendata/DownLoad.aspx?Type=2&CaseNo1=AV&CaseNo2=1&FileType=1&Lang=C&FolderType=', function(data){
-		var i=0;
-		markerAttraction = [];
-		markerAttraction = [];
-		for(i=0;i<data.length;i++){
-
-			var latitude = parseFloat(data[i].Py);
-			var longitude = parseFloat(data[i].Px);
-
-			markerAttraction.push(L.marker([latitude, longitude]).addTo(map));
-			popupAttraction.push(markerAttraction[i].bindPopup(data[i].Name))
-		}
-	});
 }
 
 function loadAttraction(){
