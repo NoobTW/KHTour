@@ -35,8 +35,9 @@ $(function(){
 			statusChangeCallback(response);
 		});
 	});
-	var searchresult="./api/getSearchResult.php";
-	$("#search").autocomplete({source: searchresult});
+	$.getJSON("./api/getSearchResult.php", function(res){
+		$("#search").autocomplete({source: res});
+	});
 
 });
 
