@@ -261,6 +261,7 @@ input[type="submit"]:active{
   overflow-y: auto;
   overflow-x: auto;
 }
+<<<<<<< HEAD
 
 #list{
 	display: none;
@@ -295,3 +296,5 @@ input[type="submit"]:active{
 .illustrate{
     line-height: 1.5
 }
+=======
+>>>>>>> 8d8064bebfdbb3f9b5a527d3f38d720f5bab937d

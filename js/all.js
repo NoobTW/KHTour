@@ -22,13 +22,28 @@ $(function(){
 		if ($(this).html()==='找景點') {
 			$(this).html('找全部');
 			loadAttraction();
+			$.getJSON('./api/getSearchResult.php?type=att', function(res){
+				$("#search").autocomplete({
+					source: res
+				});
+			})
 		}else if(($(this).html()==='找全部')){
 			$(this).html('找餐飲');
 			loadRestaurant();
 			loadAttraction();
+			$.getJSON('./api/getSearchResult.php', function(res){
+				$("#search").autocomplete({
+					source: res
+				});
+			})
 		}else if(($(this).html()==='找餐飲')){
 			$(this).html('找景點');
 			loadRestaurant();
+			$.getJSON('./api/getSearchResult.php?type=res', function(res){
+				$("#search").autocomplete({
+					source: res
+				});
+			})
 		}
 	});
 
@@ -37,8 +52,18 @@ $(function(){
 			statusChangeCallback(response);
 		});
 	});
-	var searchresult="./api/getSearchResult.php";
-	$("#search").autocomplete({source: searchresult});
+	$.getJSON('./api/getSearchResult.php', function(res){
+		$("#search").autocomplete({
+			source: res
+		});
+	})
+	
+	$('#search_go').click(function(){
+		search($('#search').val())
+	});
+	$('#search').keypress(function(e){
+		if(e.which == 13) search($('#search').val());
+	});
 
 });
 
@@ -59,6 +84,9 @@ var markerRestaurant = [];
 var popupRestaurant = [];
 var markerAttraction = [];
 var popupAttraction = [];
+
+var dataRestaurant;
+var dataAttraction;
 
 function handleGetCurrentPosition(location){
 	var city = "";
@@ -112,8 +140,10 @@ function loadAttraction(){
 	for(var i=0;i<markerRestaurant.length;i++){
 		map.removeLayer(markerRestaurant[i]);
 	}
+	$('#list').html('');
 
 	$.getJSON( "./api/getAttraction.php", function( data ) {
+		dataAttraction = data;
 		var i=0;
 		markerAttraction = [];
 		for(i=0;i<data.length;i++){
@@ -123,7 +153,10 @@ function loadAttraction(){
 
 			markerAttraction.push(L.marker([latitude, longitude]).addTo(map));
 			popupAttraction.push(markerAttraction[i].bindPopup(data[i].Name))
+			
+			
 		}
+		
 	});
 }
 
@@ -137,8 +170,10 @@ function loadRestaurant(){
 	for(var i=0;i<markerRestaurant.length;i++){
 		map.removeLayer(markerRestaurant[i]);
 	}
+	$('#list').html('');
 
 	$.getJSON( "./api/getRestaurant.php", function( data ) {
+		dataRestaurant = data;
 		var i=0;
 		markerRestaurant = [];
 		for(i=0;i<data.length;i++){
@@ -148,8 +183,43 @@ function loadRestaurant(){
 
 			markerRestaurant.push(L.marker([latitude, longitude], {icon: redMarker}).addTo(map));
 			popupRestaurant.push(markerRestaurant[i].bindPopup(data[i].Name))
+			
+			
 		}
 	});
+}
+
+function search(keyword){
+	var isFind = false;
+	var lat, lng;
+	if(dataAttraction !== undefined && dataRestaurant !== undefined){	
+		for(var i=0;i<dataAttraction.length;i++){
+			if(dataAttraction[i].Name == keyword){
+				isFind = true;
+				lng = dataAttraction[i].Px;
+				lat = dataAttraction[i].py;
+				map.closePopup();
+				markerAttraction[i].openPopup();
+				break;
+			}
+		}
+		if(!isFind){
+			for(var i=0;i<dataRestaurant.length;i++){
+				if(dataRestaurant[i].Name == keyword){
+					isFind = true;
+					lng = dataRestaurant[i].Px;
+					lat = dataRestaurant[i].Py;
+					map.closePopup();
+					markerRestaurant[i].openPopup();
+					break;
+				}
+			}
+		}
+		if(isFind){
+			map.panTo(new L.LatLng(lat, lng));
+			map.setZoom(17);
+		}
+	}
 }
 
 var isFacebookLogin = false;
@@ -165,10 +235,10 @@ var user = [];
 
 	window.fbAsyncInit = function() {
 		FB.init({
-		appId      : '766234450180135',
-		cookie     : true,
-		xfbml      : true,
-		version    : 'v2.5'
+		appId	  : '766234450180135',
+		cookie	 : true,
+		xfbml	  : true,
+		version	: 'v2.5'
 	});
 	FB.getLoginStatus(function(response) {
 		statusChangeCallback(response);
@@ -180,7 +250,7 @@ function statusChangeCallback(response) {
 	if (response.status === 'connected') {
 		isFacebookLogin = true;
 		FB.api('/me', function(response) {
-			user = response;
+			$.post('./api/addUserInfo.php', response);
 			FB.api('/me/picture?width=50&height=50', function(response){
 				$('#facebook').parent().html('<img src="' + response.data.url + '" />');
 			})
@@ -191,6 +261,7 @@ function statusChangeCallback(response) {
 
 
 	}
+<<<<<<< HEAD
 }
 
 function parseXml(xml) {
@@ -224,4 +295,6 @@ function getcard () {
 	$('#list').accordion({
 		collapsible: true,activate: false
 	});
+=======
+>>>>>>> 8d8064bebfdbb3f9b5a527d3f38d720f5bab937d
 }
