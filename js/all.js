@@ -174,6 +174,7 @@ function loadAttraction(){
 			$('#list').append(' \
 			<div class="card"> \
 				<div class="card_title">' + data[i].Name + '</div> \
+				<div class="card_love"><i class="fa fa-heart-o"></i></div> \
 				<div class="card_pic"><img class="card_picture" data-src="' + data[i].Picture1.replace("http", "https") + '" alt="" /></div> \
 				<div class="card_desc"> \
 					<div class="card_tel"><i class="fa fa-phone"></i> ' + data[i].Tel.replace('886-', '0') + '</div> \
@@ -216,6 +217,7 @@ function loadRestaurant(){
 			$('#list').append(' \
 			<div class="card"> \
 				<div class="card_title">' + data[i].Name + '</div> \
+				<div class="card_love"><i class="fa fa-heart-o"></i></div> \
 				<div class="card_pic"><img class="card_picture" data-src="' + data[i].Picture1.replace("http", "https") + '" alt="" /></div> \
 				<div class="card_desc"> \
 					<div class="card_tel"><i class="fa fa-phone"></i> ' + data[i].Tel.replace('886-', '0') + '</div> \
