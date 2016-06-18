@@ -20,13 +20,28 @@ $(function(){
 		if ($(this).html()==='找景點') {
 			$(this).html('找全部');
 			loadAttraction();
+			$.getJSON('./api/getSearchResult.php?type=att', function(res){
+				$("#search").autocomplete({
+					source: res
+				});
+			})
 		}else if(($(this).html()==='找全部')){
 			$(this).html('找餐飲');
 			loadRestaurant();
 			loadAttraction();
+			$.getJSON('./api/getSearchResult.php', function(res){
+				$("#search").autocomplete({
+					source: res
+				});
+			})
 		}else if(($(this).html()==='找餐飲')){
 			$(this).html('找景點');
 			loadRestaurant();
+			$.getJSON('./api/getSearchResult.php?type=res', function(res){
+				$("#search").autocomplete({
+					source: res
+				});
+			})
 		}
 	});
 
@@ -36,13 +51,15 @@ $(function(){
 		});
 	});
 	$.getJSON('./api/getSearchResult.php', function(res){
-		console.log(res);
 		$("#search").autocomplete({
 			source: res
 		});
 	})
-	$("#search").autocomplete({source: './api/getSearchResult.php'});
-
+	$('#search').click(function(){
+		for(var i=0;i<markerRestaurant.length;i++){
+			
+		}
+	})
 });
 
 var mapScale = 11;
@@ -62,6 +79,9 @@ var markerRestaurant = [];
 var popupRestaurant = [];
 var markerAttraction = [];
 var popupAttraction = [];
+
+var dataRestaurant;
+var dataAttraction;
 
 function handleGetCurrentPosition(location){
 	var city = "";
@@ -117,6 +137,7 @@ function loadAttraction(){
 	}
 
 	$.getJSON( "./api/getAttraction.php", function( data ) {
+		dataAttraction = data;
 		var i=0;
 		markerAttraction = [];
 		for(i=0;i<data.length;i++){
@@ -142,6 +163,7 @@ function loadRestaurant(){
 	}
 
 	$.getJSON( "./api/getRestaurant.php", function( data ) {
+		dataRestaurant = data;
 		var i=0;
 		markerRestaurant = [];
 		for(i=0;i<data.length;i++){
@@ -194,26 +216,4 @@ function statusChangeCallback(response) {
 
 
 	}
-}
-
-function parseXml(xml) {
-	var dom = null;
-	if (window.DOMParser) {
-		try {
-			dom = (new DOMParser()).parseFromString(xml, "text/xml");
-		}
-		catch (e) { dom = null; }
-	}else if (window.ActiveXObject) {
-		try {
-			dom = new ActiveXObject('Microsoft.XMLDOM');
-			dom.async = false;
-			if (!dom.loadXML(xml)) // parse error ..
-
-				console.log(dom.parseError.reason + dom.parseError.srcText);
-		}
-		catch (e) { dom = null; }
-	}
-	else
-		console.log("cannot parse xml string!");
-	return dom;
 }
