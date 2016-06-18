@@ -1,4 +1,5 @@
 $(function(){
+	$('#star-rating').rating();
 	$('.content').height($(window).height() - $('.wrapper').height() + $('.content').height());
 	if(navigator.geolocation){
 		navigator.geolocation.getCurrentPosition(handleGetCurrentPosition, onError);
@@ -9,6 +10,7 @@ $(function(){
 			$(this).html('地圖顯示');
 			$('#map').hide();
 			$('#list').show();
+			getcard();
 		}else{
 			$(this).html('清單顯示');
 			$('#map').show();
@@ -211,4 +213,15 @@ function parseXml(xml) {
 	else
 		console.log("cannot parse xml string!");
 	return dom;
+}
+
+function getcard () {
+	 $.get( "attractioncard.php", function( data ) {
+		$( '#list').html( data );
+		alert( "Load was performed." );
+	});
+	$('#star-rating').rating();
+	$('#list').accordion({
+		collapsible: true,activate: false
+	});
 }
