@@ -1,12 +1,5 @@
 <?php
-define('DB_NAME','khtour');
-define('DB_USER','root');
-define('DB_PASSWD','khtour');
-define('DB_HOST','localhost');
-define('DB_TYPE','mysql');
-date_default_timezone_set("Asia/Taipei");
-header('Content-Type: application/json; charset=utf-8');
-$dbh = new PDO(DB_TYPE.':host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWD);
+require_once('./connect.php');
 $sth = $dbh->query("SELECT * FROM `restaurant`", PDO::FETCH_ASSOC);
 $rows = $sth->fetchAll();
 $rows = removePrefix($rows);

@@ -1,9 +1,0 @@
-<?php
-require('connect.php');
-$sth = $dbh->query("SELECT * FROM `restaurant`", PDO::FETCH_ASSOC);
-// $data = file_get_contents($url); // ?–å?jsonå­—ä¸²
-// $data = json_decode($data, true); // å°‡jsä¸²è??é™£??
-$rows = $sth->fetchAll();
-$rows=json_encode($rows);
-echo "$rows";
- ?>
