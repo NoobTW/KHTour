@@ -261,3 +261,7 @@ input[type="submit"]:active{
   overflow-y: auto;
   overflow-x: auto;
 }
+
+#list{
+	display: none;
+}

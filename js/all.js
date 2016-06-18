@@ -7,8 +7,12 @@ $(function(){
 	$('#showList').click(function(event) {
 		if ($(this).html()==='清單顯示') {
 			$(this).html('地圖顯示');
+			$('#map').hide();
+			$('#list').show();
 		}else{
 			$(this).html('清單顯示');
+			$('#map').show();
+			$('#list').hide();
 		}
 	});
 

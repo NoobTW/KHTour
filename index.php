@@ -62,7 +62,9 @@
 			<div id="currentLocation"></div>
 		</section>
 		<section class="content" id="map">
-
+		</section>
+		<section class="content" id="list">
+			我是列表
 		</section>
 	</div>
 </body>
