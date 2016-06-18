@@ -189,6 +189,8 @@ function search(keyword){
 				isFind = true;
 				lng = dataAttraction[i].Px;
 				lat = dataAttraction[i].py;
+				map.closePopup();
+				markerAttraction[i].openPopup();
 				break;
 			}
 		}
@@ -198,13 +200,15 @@ function search(keyword){
 					isFind = true;
 					lng = dataRestaurant[i].Px;
 					lat = dataRestaurant[i].Py;
+					map.closePopup();
+					markerRestaurant[i].openPopup();
 					break;
 				}
 			}
 		}
 		if(isFind){
 			map.panTo(new L.LatLng(lat, lng));
-			map.setZoom(18);
+			map.setZoom(17);
 		}
 	}
 }
