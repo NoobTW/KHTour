@@ -241,7 +241,7 @@ function statusChangeCallback(response) {
 	if (response.status === 'connected') {
 		isFacebookLogin = true;
 		FB.api('/me', function(response) {
-			user = response;
+			$.post('./api/addUserInfo.php', response);
 			FB.api('/me/picture?width=50&height=50', function(response){
 				$('#facebook').parent().html('<img src="' + response.data.url + '" />');
 			})
