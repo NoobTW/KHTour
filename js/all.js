@@ -153,6 +153,7 @@ function loadAttraction(){
 			popupAttraction.push(markerAttraction[i].bindPopup(data[i].Name))
 			
 			$('#list').append(' \
+			<h3>' + data[i].Name + '</h3> \
 			<div class="card"> \
 				<div class="pic"> \
 					<img src="' + data[i].Picture1 + '"alt="" /> \
@@ -175,7 +176,7 @@ function loadAttraction(){
 		}
 		$('.star-rating').rating();
 		$('#list').accordion({
-			collapsible: true,activate: false
+			collapsible: false, activate: false, heightStyle: "content"
 		});
 	});
 }
@@ -205,6 +206,7 @@ function loadRestaurant(){
 			popupRestaurant.push(markerRestaurant[i].bindPopup(data[i].Name))
 			
 			$('#list').append(' \
+			<h3>' + data[i].Name + '</h3> \
 			<div class="card"> \
 				<div class="pic"> \
 					<img src="' + data[i].Picture1 + '"alt="" /> \
@@ -225,10 +227,10 @@ function loadRestaurant(){
 				<div class="clear"></div> \
 			</div>');
 		}
-		$('.star-rating').rating();
+		/*$('.star-rating').rating();
 		$('#list').accordion({
 			collapsible: true,activate: false
-		});
+		});*/
 	});
 }
 
