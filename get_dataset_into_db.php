@@ -1,12 +1,5 @@
 <?php
-define('DB_NAME','khtour');
-define('DB_USER','root');
-define('DB_PASSWD','khtour');
-define('DB_HOST','localhost');
-define('DB_TYPE','mysql');
-date_default_timezone_set("Asia/Taipei");
-$now=date('Y-m-d');
-$dbh = new PDO(DB_TYPE.':host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWD);
+require('connect.php');
 $url = "http://data.kaohsiung.gov.tw/Opendata/DownLoad.aspx?Type=2&CaseNo1=AV&CaseNo2=2&FileType=1&Lang=C&FolderType";
 
 $data = file_get_contents($url); // 取得json字串
