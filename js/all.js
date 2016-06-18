@@ -55,11 +55,14 @@ $(function(){
 			source: res
 		});
 	})
-	$('#search').click(function(){
-		for(var i=0;i<markerRestaurant.length;i++){
-			
-		}
-	})
+	
+	$('#search_go').click(function(){
+		search($('#search').val())
+	});
+	$('#search').keypress(function(e){
+		if(e.which == 13) search($('#search').val());
+	});
+
 });
 
 var mapScale = 11;
@@ -175,6 +178,35 @@ function loadRestaurant(){
 			popupRestaurant.push(markerRestaurant[i].bindPopup(data[i].Name))
 		}
 	});
+}
+
+function search(keyword){
+	var isFind = false;
+	var lat, lng;
+	if(dataAttraction !== undefined && dataRestaurant !== undefined){	
+		for(var i=0;i<dataAttraction.length;i++){
+			if(dataAttraction[i].Name == keyword){
+				isFind = true;
+				lng = dataAttraction[i].Px;
+				lat = dataAttraction[i].py;
+				break;
+			}
+		}
+		if(!isFind){
+			for(var i=0;i<dataRestaurant.length;i++){
+				if(dataRestaurant[i].Name == keyword){
+					isFind = true;
+					lng = dataRestaurant[i].Px;
+					lat = dataRestaurant[i].Py;
+					break;
+				}
+			}
+		}
+		if(isFind){
+			map.panTo(new L.LatLng(lat, lng));
+			map.setZoom(18);
+		}
+	}
 }
 
 var isFacebookLogin = false;
