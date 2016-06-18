@@ -62,8 +62,24 @@ $(function(){
 	$('#search').keypress(function(e){
 		if(e.which == 13) search($('#search').val());
 	});
+	
+	$('body').delegate('.card', 'click', function(){
+		openCard($(this));
+	})
 
 });
+
+function openCard(card){
+	var pic = card.find('.card_pic');
+	if(pic.is(":visible")){
+		card.find('.card_pic').hide('fast');
+		card.find('.card_desc').hide('fast');
+	}else{
+		card.find('.card_picture').attr('src', card.find('.card_picture').attr('data-src'));
+		card.find('.card_pic').show('fast');
+		card.find('.card_desc').show('fast');
+	}
+}
 
 var mapScale = 11;
 var deviceWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
@@ -140,7 +156,8 @@ function loadAttraction(){
 	}
 	$('#list').html('');
 
-	$.getJSON( "./api/getAttraction.php", function( data ) {
+	//$.getJSON( "./api/getAttraction.php", function( data ) {
+	$.getJSON("https://data.kaohsiung.gov.tw/Opendata/DownLoad.aspx?Type=2&CaseNo1=AV&CaseNo2=2&FileType=1&Lang=C&FolderType", function(data){
 		dataAttraction = data;
 		var i=0;
 		markerAttraction = [];
@@ -152,7 +169,18 @@ function loadAttraction(){
 			markerAttraction.push(L.marker([latitude, longitude]).addTo(map));
 			popupAttraction.push(markerAttraction[i].bindPopup(data[i].Name))
 			
-			
+			$('#list').append(' \
+			<div class="card"> \
+				<div class="card_title">' + data[i].Name + '</div> \
+				<div class="card_pic"><img class="card_picture" data-src="' + data[i].Picture1.replace("http", "https") + '" alt="" /></div> \
+				<div class="card_desc"> \
+					<div class="card_tel"><i class="fa fa-phone"></i> ' + data[i].Tel.replace('886-', '0') + '</div> \
+					<div class="card_addr"><i class="fa fa-map-marker"></i> ' + data[i].Add + '</div> \
+					<div class="card_opentime"><i class="fa fa-clock-o"></i> ' + data[i].Opentime + '</div> \
+					<div class="card_description">' + data[i].Description + '</div> \
+				</div> \
+				<div class="clear"></div> \
+			</div>');
 		}
 		
 	});
@@ -170,7 +198,8 @@ function loadRestaurant(){
 	}
 	$('#list').html('');
 
-	$.getJSON( "./api/getRestaurant.php", function( data ) {
+	//$.getJSON( "./api/getRestaurant.php", function( data ) {
+	$.getJSON("https://data.kaohsiung.gov.tw/Opendata/DownLoad.aspx?Type=2&CaseNo1=AV&CaseNo2=1&FileType=1&Lang=C&FolderType=", function(data){
 		dataRestaurant = data;
 		var i=0;
 		markerRestaurant = [];
@@ -182,7 +211,18 @@ function loadRestaurant(){
 			markerRestaurant.push(L.marker([latitude, longitude], {icon: redMarker}).addTo(map));
 			popupRestaurant.push(markerRestaurant[i].bindPopup(data[i].Name))
 			
-			
+			$('#list').append(' \
+			<div class="card"> \
+				<div class="card_title">' + data[i].Name + '</div> \
+				<div class="card_pic"><img class="card_picture" data-src="' + data[i].Picture1.replace("http", "https") + '" alt="" /></div> \
+				<div class="card_desc"> \
+					<div class="card_tel"><i class="fa fa-phone"></i> ' + data[i].Tel.replace('886-', '0') + '</div> \
+					<div class="card_addr"><i class="fa fa-map-marker"></i> ' + data[i].Add + '</div> \
+					<div class="card_opentime"><i class="fa fa-clock-o"></i> ' + data[i].Opentime + '</div> \
+					<div class="card_description">' + data[i].Description + '</div> \
+				</div> \
+				<div class="clear"></div> \
+			</div>');
 		}
 	});
 }

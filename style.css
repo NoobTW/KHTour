@@ -251,6 +251,10 @@ input[type="submit"]:active{
 	border: none;
 }
 
+#list{
+	display: none;
+}
+
 .clear{
 	clear: both;
 }
@@ -260,4 +264,40 @@ input[type="submit"]:active{
   max-height: 500px;
   overflow-y: auto;
   overflow-x: auto;
+}
+
+.card{
+	border: 1px solid black;
+	border-radius: 10px;
+	padding: .5rem;
+	margin: .5rem;
+}
+
+.card_title{
+	font-size: 1.2rem;
+	text-align: left;
+	margin: .3rem;
+}
+
+.card_pic{
+	float: left;
+	width: 30%;
+	display: none;
+}
+
+.card_picture{
+	width: 100%;
+	height: auto;
+}
+
+.card_desc{
+	float: right;
+	width: 68%;
+	text-align: left;
+	line-height: 1.25;
+	display: none;
+}
+
+.card_tel, .card_opentime, .card_addr{
+	font-size: .95rem;
 }
