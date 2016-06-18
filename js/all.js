@@ -35,7 +35,7 @@ $(function(){
 			statusChangeCallback(response);
 		});
 	});
-	var searchresult="../final_with_noobbeloved/api/load_search_result.php";
+	var searchresult="./api/getSearchResult.php";
 	$("#search").autocomplete({source: searchresult});
 
 });
