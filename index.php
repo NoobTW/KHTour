@@ -4,10 +4,15 @@
 	<title>高雄旅遊通</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0" />
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="./api/jquery-ui-1.11.4/jquery-ui.min.css">
+	<link rel="stylesheet" href="./leaflet.awesome-markers.css">
 	<link href="./style.css" rel="stylesheet" />
 	<link href="./leaflet.css" rel="stylesheet" />
 	<script src="./leaflet.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="./api/jquery-ui-1.11.4/external/jquery/jquery.js"></script>
+	<script src="./api/jquery-ui-1.11.4/jquery-ui.min.js"></script>
+	<script src="./js/leaflet.awesome-markers.js"></script>
 	<script src="./js/all.js"></script>
 </head>
 <body>
@@ -41,7 +46,7 @@
 		<section class="options">
 			<div class="opt_left">
 				<div class="button" id="showList">清單顯示</div>
-				<div class="button" id="findAttraction">找景點</div>
+				<div class="button" id="findAttraction">找餐飲</div>
 			</div>
 			<div class="opt_right">
 				<div class="button" id="sortByPopularity">

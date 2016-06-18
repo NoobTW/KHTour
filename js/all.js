@@ -14,9 +14,13 @@ $(function(){
 
 	$('#findAttraction').click(function(event) {
 		if ($(this).html()==='找景點') {
-			$(this).html('找餐飲');
+			$(this).html('找全部');
 			loadAttraction();
-		}else{
+		}else if(($(this).html()==='找全部')){
+			$(this).html('找餐飲');
+			loadRestaurant();
+			loadAttraction();
+		}else if(($(this).html()==='找餐飲')){
 			$(this).html('找景點');
 			loadRestaurant();
 		}
@@ -27,7 +31,7 @@ $(function(){
 			statusChangeCallback(response);
 		});
 	});
-	var searchresult=".././api/load_search_result.php";
+	var searchresult="../final_with_noobbeloved/api/load_search_result.php";
 	$("#search").autocomplete({source: searchresult});
 
 });
@@ -91,7 +95,7 @@ function getMap(latitude, longitude){
 		.setContent("現在位置")
 		.openOn(map);
 	}
-
+	loadAttraction();
 	loadRestaurant();
 }
 
@@ -106,7 +110,6 @@ function loadAttraction(){
 	$.getJSON( "./api/getAttraction.php", function( data ) {
 		var i=0;
 		markerAttraction = [];
-		markerAttraction = [];
 		for(i=0;i<data.length;i++){
 
 			var latitude = parseFloat(data[i].Py);
@@ -119,6 +122,9 @@ function loadAttraction(){
 }
 
 function loadRestaurant(){
+	var redMarker = L.AwesomeMarkers.icon({
+		icon: 'coffee', prefix: 'fa', markerColor: '#ff9800', iconColor: '#f28f82'
+	});
 	for(var i=0;i<markerAttraction.length;i++){
 		map.removeLayer(markerAttraction[i]);
 	}
@@ -128,15 +134,14 @@ function loadRestaurant(){
 
 	$.getJSON( "./api/getRestaurant.php", function( data ) {
 		var i=0;
-		markerAttraction = [];
-		markerAttraction = [];
+		markerRestaurant = [];
 		for(i=0;i<data.length;i++){
 
 			var latitude = parseFloat(data[i].Py);
 			var longitude = parseFloat(data[i].Px);
 
-			markerAttraction.push(L.marker([latitude, longitude]).addTo(map));
-			popupAttraction.push(markerAttraction[i].bindPopup(data[i].Name))
+			markerRestaurant.push(L.marker([latitude, longitude], {icon: redMarker}).addTo(map));
+			popupRestaurant.push(markerRestaurant[i].bindPopup(data[i].Name))
 		}
 	});
 }
