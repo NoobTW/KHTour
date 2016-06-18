@@ -138,6 +138,7 @@ function loadAttraction(){
 	for(var i=0;i<markerRestaurant.length;i++){
 		map.removeLayer(markerRestaurant[i]);
 	}
+	$('#list').html('');
 
 	$.getJSON( "./api/getAttraction.php", function( data ) {
 		dataAttraction = data;
@@ -150,7 +151,32 @@ function loadAttraction(){
 
 			markerAttraction.push(L.marker([latitude, longitude]).addTo(map));
 			popupAttraction.push(markerAttraction[i].bindPopup(data[i].Name))
+			
+			$('#list').append(' \
+			<div class="card"> \
+				<div class="pic"> \
+					<img src="' + data[i].Picture1 + '"alt="" /> \
+				</div> \
+				<div class="descrip"> \
+					<div class="rate star-rating"> \
+						<input type="radio" name="example" class="rating" value="1" /> \
+						<input type="radio" name="example" class="rating" value="2" /> \
+						<input type="radio" name="example" class="rating" value="3" /> \
+						<input type="radio" name="example" class="rating" value="4" /> \
+						<input type="radio" name="example" class="rating" value="5" /> \
+					</div> \
+					<p class="address">' + data[i].Add + '</p> \
+					<p class="illustrate"> \
+						'+ data[i].Toldescribe +' \
+					</p> \
+				</div> \
+				<div class="clear"></div> \
+			</div>');
 		}
+		$('.star-rating').rating();
+		$('#list').accordion({
+			collapsible: true,activate: false
+		});
 	});
 }
 
@@ -164,6 +190,7 @@ function loadRestaurant(){
 	for(var i=0;i<markerRestaurant.length;i++){
 		map.removeLayer(markerRestaurant[i]);
 	}
+	$('#list').html('');
 
 	$.getJSON( "./api/getRestaurant.php", function( data ) {
 		dataRestaurant = data;
@@ -176,7 +203,32 @@ function loadRestaurant(){
 
 			markerRestaurant.push(L.marker([latitude, longitude], {icon: redMarker}).addTo(map));
 			popupRestaurant.push(markerRestaurant[i].bindPopup(data[i].Name))
+			
+			$('#list').append(' \
+			<div class="card"> \
+				<div class="pic"> \
+					<img src="' + data[i].Picture1 + '"alt="" /> \
+				</div> \
+				<div class="descrip"> \
+					<div class="rate star-rating"> \
+						<input type="radio" name="example" class="rating" value="1" /> \
+						<input type="radio" name="example" class="rating" value="2" /> \
+						<input type="radio" name="example" class="rating" value="3" /> \
+						<input type="radio" name="example" class="rating" value="4" /> \
+						<input type="radio" name="example" class="rating" value="5" /> \
+					</div> \
+					<p class="address">' + data[i].Add + '</p> \
+					<p class="illustrate"> \
+						'+ data[i].Description +' \
+					</p> \
+				</div> \
+				<div class="clear"></div> \
+			</div>');
 		}
+		$('.star-rating').rating();
+		$('#list').accordion({
+			collapsible: true,activate: false
+		});
 	});
 }
 
@@ -226,10 +278,10 @@ var user = [];
 
 	window.fbAsyncInit = function() {
 		FB.init({
-		appId      : '766234450180135',
-		cookie     : true,
-		xfbml      : true,
-		version    : 'v2.5'
+		appId	  : '766234450180135',
+		cookie	 : true,
+		xfbml	  : true,
+		version	: 'v2.5'
 	});
 	FB.getLoginStatus(function(response) {
 		statusChangeCallback(response);
