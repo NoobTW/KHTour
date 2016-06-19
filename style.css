@@ -261,14 +261,35 @@ input[type="submit"]:active{
 	background: #000000;
 	color: #ffffff;
 	height: 50px;
-	position: fixed;
 	line-height: 50px;
+	position: fixed;
 	 bottom: 0;
 	 display: none;
 }
 
-#btnNavigate:hover{
-	background: #ffffff;
+// #btnNavigate:hover{
+// 	background: #ffffff;
+// 	color: #000000;
+// }
+
+#btnNavigate:active{
+	background: #f44336;
+	color: #000000;
+}
+
+#btnSaveRoute{
+	text-align: center;
+	background: #000000;
+	color: #ffffff;
+	height: 50px;
+	line-height: 50px;
+	position: fixed;
+	bottom: 0;
+	 // display: none;
+}
+
+#btnSaveRoute:active{
+	background: #f44336;
 	color: #000000;
 }
 
