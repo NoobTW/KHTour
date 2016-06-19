@@ -372,11 +372,9 @@ function displayFavorite(){
 		$('.card').filter(function(){
 			return $(this).find('.fa-heart-o').length>0;
 		}).hide();
-		$('#btnNavigate').show();
 	}else{
 		$('#like').css('background', '#C75C5C');
 		$('.card').show();
-		$('#btnNavigate').hide();
 	}
 }
 
