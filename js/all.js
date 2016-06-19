@@ -112,10 +112,10 @@ if(deviceWidth > 768){
 }
 var map;
 var isMapAvailable = false;
-//var markerRestaurant = [];
-var popupRestaurant = [];
-//var markerAttraction = [];
-var popupAttraction = [];
+var markerRestaurant = [];
+//var popupRestaurant = [];
+var markerAttraction = [];
+//var popupAttraction = [];
 
 var markerClustersRestaurant = L.markerClusterGroup({iconCreateFunction: function(cluster) {return new L.DivIcon({ html: '<b>' + cluster.getChildCount() + '</b>' });}});
 var markerClustersAttraction = L.markerClusterGroup({iconCreateFunction: function(cluster) {return new L.DivIcon({ html: '<b>' + cluster.getChildCount() + '</b>' });}});
@@ -186,11 +186,9 @@ function loadAttraction(){
 
 			var latitude = parseFloat(data[i].Py);
 			var longitude = parseFloat(data[i].Px);
-
-			//markerAttraction.push(L.marker([latitude, longitude]).addTo(map));
-			//popupAttraction.push(markerAttraction[i].bindPopup(data[i].Name))
 			
 			var m = L.marker([latitude, longitude]).bindPopup(data[i].Name);
+			markerAttraction.push(m);
 			markerClustersAttraction.addLayer(m);
 
 			$('#list').append(' \
@@ -233,11 +231,9 @@ function loadRestaurant(){
 
 			var latitude = parseFloat(data[i].Py);
 			var longitude = parseFloat(data[i].Px);
-
-			//markerRestaurant.push(L.marker([latitude, longitude], {icon: redMarker}).addTo(map));
-			//popupRestaurant.push(markerRestaurant[i].bindPopup(data[i].Name))
-			
+		
 			var m = L.marker([latitude, longitude], {icon: redMarker}).bindPopup(data[i].Name);
+			markerRestaurant.push(m);
 			markerClustersRestaurant.addLayer(m);
 
 			$('#list').append(' \
