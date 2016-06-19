@@ -333,11 +333,9 @@ var user = [];
 function getFavorite () {
 	$.getJSON('./api/getFavorite.php',function(data){
 		var fav_data=data;
-		console.log(fav_data.length);
 		$('.card_title').each(function(index, el) {
 			var $this=$(this);
 			var $name=$this.html();
-			console.log(fav_data[index]);
 			for(var i=0;i<fav_data.length;i++){
 				if ($name===fav_data[i]) {
 					$this.next().children('i').attr('class','fa fa-heart');
