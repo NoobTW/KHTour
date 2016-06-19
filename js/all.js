@@ -291,12 +291,14 @@ function search(keyword){
 	}
 }
 
-function route(start, end, via){
+function route(via){
+	
+	for(var i=0;i<via.length;i++){
+			via[i] = L.latLng(via[i]);
+	}
+	
 	L.Routing.control({
-			waypoints: [
-				L.latLng(22.5914348,120.3132427),
-				L.latLng(22.7344154,120.282984)
-			],
+			waypoints: via, 
 			routeWhileDragging: true
 		}).addTo(map);
 }
