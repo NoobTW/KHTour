@@ -90,7 +90,13 @@ $(function(){
 		}
 	})
 
-
+	$('body').delegate('.card_map', 'click', function(e){
+		e.stopPropagation();
+		var name = $(this).parent().find('.card_title').text();
+		if ($('#showList').text()==='地圖顯示') $('#showList').click();	
+		search(name);
+		$('.card').show();
+	});
 });
 
 function openCard(card){
@@ -196,8 +202,8 @@ function loadAttraction(){
 			var latitude = parseFloat(data[i].Py);
 			var longitude = parseFloat(data[i].Px);
 
-			var m = L.marker([latitude, longitude], {icon: blueMarker}).bindPopup(data[i].Name);
-
+			var m = L.marker([latitude, longitude], {icon: blueMarker});
+			m.bindPopup(data[i].Name);
 			markerAttraction.push(m);
 			markerClustersAttraction.addLayer(m);
 
@@ -243,7 +249,8 @@ function loadRestaurant(){
 			var latitude = parseFloat(data[i].Py);
 			var longitude = parseFloat(data[i].Px);
 
-			var m = L.marker([latitude, longitude], {icon: redMarker}).bindPopup(data[i].Name);
+			var m = L.marker([latitude, longitude], {icon: redMarker});
+			m.bindPopup(data[i].Name);
 			markerRestaurant.push(m);
 			markerClustersRestaurant.addLayer(m);
 
