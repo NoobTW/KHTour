@@ -193,10 +193,13 @@ function loadAttraction(){
 			var latitude = parseFloat(data[i].Py);
 			var longitude = parseFloat(data[i].Px);
 
+<<<<<<< HEAD
 			//markerAttraction.push(L.marker([latitude, longitude]).addTo(map));
 			//popupAttraction.push(markerAttraction[i].bindPopup(data[i].Name))
 
 
+=======
+>>>>>>> b98d2fd2e37ddc99e1e9a52da37aba2e58b29a0c
 			var m = L.marker([latitude, longitude]).bindPopup(data[i].Name);
 			markerAttraction.push(m);
 			markerClustersAttraction.addLayer(m);
@@ -242,10 +245,14 @@ function loadRestaurant(){
 
 			var latitude = parseFloat(data[i].Py);
 			var longitude = parseFloat(data[i].Px);
+<<<<<<< HEAD
 			//markerRestaurant.push(L.marker([latitude, longitude], {icon: redMarker}).addTo(map));
 			//popupRestaurant.push(markerRestaurant[i].bindPopup(data[i].Name))
 
 
+=======
+
+>>>>>>> b98d2fd2e37ddc99e1e9a52da37aba2e58b29a0c
 			var m = L.marker([latitude, longitude], {icon: redMarker}).bindPopup(data[i].Name);
 			markerRestaurant.push(m);
 			markerClustersRestaurant.addLayer(m);
@@ -359,23 +366,16 @@ function getFavorite () {
 }
 
 function displayFavorite(){
-	if ($('#showList').html()==='清單顯示') {
-		$('#showList').click();
-		if($('.card').find('.fa-heart-o').length>0){
-	    		$('.card').filter(function(){
+	if ($('#showList').text()==='清單顯示') $('#showList').click();
+	
+	if($('#list').find('.fa-heart-o').is(':visible')){
+		$('#like').css('background', '#8B0000');
+		$('.card').filter(function(){
 			return $(this).find('.fa-heart-o').length>0;
 		}).hide();
-		}else{
-			$('.card').find('.fa-heart-o').show();
-		}
 	}else{
-		if($('.card').find('.fa-heart-o').length>0){
-	    		$('.card').filter(function(){
-			return $(this).find('.fa-heart-o').length>0;
-		}).hide();
-		}else{
-			$('.card').find('.fa-heart-o').show();
-		}
+		$('#like').css('background', '#C75C5C');
+		$('.card').show();
 	}
 }
 
