@@ -3,17 +3,10 @@ session_start();
 require('./api/connect.php');
 $userId='1136582603031323';
 $targetName=$_POST['target'];
-$sth = $dbh->query("SELECT att_Id FROM `attraction` WHERE att_Name='$targetName'", PDO::FETCH_ASSOC);
+$sth = $dbh->query("SELECT obj_Id FROM `object` WHERE obj_Name='$targetName'", PDO::FETCH_ASSOC);
 $rows = $sth->fetchAll();
 foreach ($rows as $value) {
 	$target=$value['att_Id'];
-}
-if (empty($target)) {
-	$sth = $dbh->query("SELECT res_Id FROM `restaurant` WHERE res_Name='$targetName'", PDO::FETCH_ASSOC);
-	$rows = $sth->fetchAll();
-	foreach ($rows as $value) {
-		$target=$value['res_Id'];
-	}
 }
 echo $target;
 $sth = $dbh->prepare("INSERT INTO favorite(`f_user`,`f_target`) VALUES(:id,:target)");
