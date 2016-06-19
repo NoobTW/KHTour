@@ -256,6 +256,27 @@ input[type="submit"]:active{
 	display: none;
 }
 
+#btnNavigate{
+	text-align: center;
+	background: #000000;
+	color: #ffffff;
+	height: 50px;
+	position: fixed;
+	line-height: 50px;
+	 bottom: 0;
+	 display: none;
+}
+
+#btnNavigate:hover{
+	background: #ffffff;
+	color: #000000;
+}
+
+#btnNavigate:active{
+	background: #f44336;
+	color: #000000;
+}
+
 .clear{
 	clear: both;
 }

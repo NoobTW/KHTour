@@ -70,6 +70,8 @@
 		</section>
 		<section class="content" id="list">
 		</section>
+		<div id="btnNavigate"><i class="fa fa-location-arrow"></i></div>
+
 	</div>
 </body>
 </html>
