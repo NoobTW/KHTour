@@ -1,8 +1,7 @@
 <?php
 session_start();
 require('./connect.php');
-// $userId=$_SESSION['user_id'];
-$userId='1136582603031323';
+$userId=$_SESSION['user_id'];
 
 $targetName=$_POST['target'];
 $sth = $dbh->query("SELECT obj_Id FROM `object` WHERE obj_Name='$targetName'", PDO::FETCH_ASSOC);
