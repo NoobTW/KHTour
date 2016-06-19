@@ -13,6 +13,7 @@ $(function(){
 			$(this).html('清單顯示');
 			$('#map').show();
 			$('#list').hide();
+			$('#btnNavigate').hide();
 		}
 	});
 	$('#btnNavigate').css({
@@ -96,7 +97,7 @@ $(function(){
 	$('body').delegate('.card_map', 'click', function(e){
 		e.stopPropagation();
 		var name = $(this).parent().find('.card_title').text();
-		if ($('#showList').text()==='地圖顯示') $('#showList').click();	
+		if ($('#showList').text()==='地圖顯示') $('#showList').click();
 		search(name);
 		$('.card').show();
 	});
@@ -205,16 +206,13 @@ function loadAttraction(){
 			var latitude = parseFloat(data[i].Py);
 			var longitude = parseFloat(data[i].Px);
 
-<<<<<<< HEAD
 			//markerAttraction.push(L.marker([latitude, longitude]).addTo(map));
 			//popupAttraction.push(markerAttraction[i].bindPopup(data[i].Name))
 
 
 			var m = L.marker([latitude, longitude]).bindPopup(data[i].Name);
-=======
 			var m = L.marker([latitude, longitude], {icon: blueMarker});
 			m.bindPopup(data[i].Name);
->>>>>>> 1cf3fda0f3efd2618b07d7969b2c8ae79dde8dbb
 			markerAttraction.push(m);
 			markerClustersAttraction.addLayer(m);
 
@@ -259,18 +257,15 @@ function loadRestaurant(){
 
 			var latitude = parseFloat(data[i].Py);
 			var longitude = parseFloat(data[i].Px);
-<<<<<<< HEAD
 			//markerRestaurant.push(L.marker([latitude, longitude], {icon: redMarker}).addTo(map));
 			//popupRestaurant.push(markerRestaurant[i].bindPopup(data[i].Name))
 
 
 
 			var m = L.marker([latitude, longitude], {icon: redMarker}).bindPopup(data[i].Name);
-=======
 
 			var m = L.marker([latitude, longitude], {icon: redMarker});
 			m.bindPopup(data[i].Name);
->>>>>>> 1cf3fda0f3efd2618b07d7969b2c8ae79dde8dbb
 			markerRestaurant.push(m);
 			markerClustersRestaurant.addLayer(m);
 
