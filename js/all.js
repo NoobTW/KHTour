@@ -77,9 +77,13 @@ $(function(){
 				$this.children('i').attr('class','fa fa-heart');
 			});
 		}else{
-			console.log(1234);
+			$.post('./api/deleteFavorite.php', {target: target_name}, function(data) {
+				$this.children('i').attr('class','fa fa-heart-o');
+			});
 		}
 	})
+
+
 });
 
 function openCard(card){
@@ -196,7 +200,7 @@ function loadAttraction(){
 				<div class="clear"></div> \
 			</div>');
 		}
-
+		getFavorite();
 	});
 }
 
@@ -239,6 +243,7 @@ function loadRestaurant(){
 				<div class="clear"></div> \
 			</div>');
 		}
+		getFavorite();
 	});
 }
 
@@ -302,6 +307,23 @@ var user = [];
 	});
 
 };
+
+function getFavorite () {
+	$.getJSON('./api/getFavorite.php',function(data){
+		var fav_data=data;
+		console.log(fav_data.length);
+		$('.card_title').each(function(index, el) {
+			var $this=$(this);
+			var $name=$this.html();
+			console.log(fav_data[index]);
+			for(var i=0;i<fav_data.length;i++){
+				if ($name===fav_data[i]) {
+					$this.next().children('i').attr('class','fa fa-heart');
+				}
+			}
+		});
+	})
+}
 
 function statusChangeCallback(response) {
 	if (response.status === 'connected') {

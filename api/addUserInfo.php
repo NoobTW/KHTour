@@ -1,7 +1,7 @@
 <?php
 require_once('./connect.php');
 session_start();
-$_SESSION['user_id] = $_POST['id']'
+$_SESSION['user_id'] = $_POST['id'];
 
 $user_id=$_POST['id'];
 $user_name=$_POST['name'];
