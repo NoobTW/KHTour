@@ -110,12 +110,11 @@ $(function(){
 		var via = [];
 		
 		$('#list').find('.fa-heart').each(function(){
-			via.push($(this).parent().find('.card_title').text());
+			via.push($(this).parent().parent().find('.card_title').text());
 		});
 		
-		for(var i=0;i<via.length;i++){
-			var keyword = via[i];
-			console.log(keyword);
+		for(var j=0;j<via.length;j++){
+			var keyword = via[j];
 			var isFind = false;
 			var lat, lng;
 			if(dataAttraction !== undefined && dataRestaurant !== undefined){
@@ -142,7 +141,7 @@ $(function(){
 					}
 				}
 				if(isFind){
-					via[i] = [lat, lng];
+					via[j] = [lat, lng];
 				}
 			}
 		}
