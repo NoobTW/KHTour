@@ -69,7 +69,8 @@ $(function(){
 		openCard($(this));
 	})
 
-	$('body').delegate('.card_love', 'click', function(){
+	$('body').delegate('.card_love', 'click', function(e){
+		e.stopPropagation();
 		var $this=$(this);
 		var target_name=$this.prev().html();
 		if ($this.children('i').attr('class') === 'fa fa-heart-o') {
