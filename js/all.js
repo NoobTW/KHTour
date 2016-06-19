@@ -50,6 +50,12 @@ $(function(){
 			statusChangeCallback(response);
 		});
 	});
+
+	$('#like').click(function() {
+		console.log(123);
+		displayFavorite();
+	});
+
 	$.getJSON('./api/getSearchResult.php', function(res){
 		$("#search").autocomplete({
 			source: res
@@ -189,7 +195,7 @@ function loadAttraction(){
 
 			//markerAttraction.push(L.marker([latitude, longitude]).addTo(map));
 			//popupAttraction.push(markerAttraction[i].bindPopup(data[i].Name))
-			
+
 			var m = L.marker([latitude, longitude]).bindPopup(data[i].Name);
 			markerClustersAttraction.addLayer(m);
 
@@ -236,7 +242,7 @@ function loadRestaurant(){
 
 			//markerRestaurant.push(L.marker([latitude, longitude], {icon: redMarker}).addTo(map));
 			//popupRestaurant.push(markerRestaurant[i].bindPopup(data[i].Name))
-			
+
 			var m = L.marker([latitude, longitude], {icon: redMarker}).bindPopup(data[i].Name);
 			markerClustersRestaurant.addLayer(m);
 
@@ -343,6 +349,27 @@ function getFavorite () {
 			}
 		});
 	})
+}
+
+function displayFavorite(){
+	if ($('#showList').html()==='清單顯示') {
+		$('#showList').click();
+		if($('.card').find('.fa-heart-o').length>0){
+	    		$('.card').filter(function(){
+			return $(this).find('.fa-heart-o').length>0;
+		}).hide();
+		}else{
+			$('.card').find('.fa-heart-o').show();
+		}
+	}else{
+		if($('.card').find('.fa-heart-o').length>0){
+	    		$('.card').filter(function(){
+			return $(this).find('.fa-heart-o').length>0;
+		}).hide();
+		}else{
+			$('.card').find('.fa-heart-o').show();
+		}
+	}
 }
 
 function statusChangeCallback(response) {
