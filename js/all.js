@@ -176,7 +176,11 @@ function loadAttraction(){
 
 			markerAttraction.push(L.marker([latitude, longitude]).addTo(map));
 			popupAttraction.push(markerAttraction[i].bindPopup(data[i].Name))
+<<<<<<< HEAD
 
+=======
+			
+>>>>>>> 22445b08fe96a9a6822a93fcc534e095b296a42f
 			$('#list').append(' \
 			<div class="card"> \
 				<div class="card_title">' + data[i].Name + '</div> \
@@ -219,7 +223,11 @@ function loadRestaurant(){
 
 			markerRestaurant.push(L.marker([latitude, longitude], {icon: redMarker}).addTo(map));
 			popupRestaurant.push(markerRestaurant[i].bindPopup(data[i].Name))
+<<<<<<< HEAD
 
+=======
+			
+>>>>>>> 22445b08fe96a9a6822a93fcc534e095b296a42f
 			$('#list').append(' \
 			<div class="card"> \
 				<div class="card_title">' + data[i].Name + '</div> \
