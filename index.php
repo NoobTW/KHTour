@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="./css/leaflet.css"/>
 	<link rel="stylesheet" href="./css/leaflet.awesome-markers.css" />
 	<link rel="stylesheet" href="./css/leaflet-routing-machine.css" />
+	<link rel="stylesheet" href="./css/leaflet.markercluster.css" />
 	<link rel="stylesheet" href="./css/rating.css"/>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
