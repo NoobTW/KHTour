@@ -9,7 +9,7 @@ foreach ($rows as $value) {
 	$sth = $dbh->query("SELECT obj_Name FROM `object` WHERE obj_Id='$value[f_target]'", PDO::FETCH_ASSOC);
 	$rows_target_name = $sth->fetchAll();
 	foreach ($rows_target_name as $Name) {
-		$Names[]=$Name[obj_Name];
+		$Names[]=$Name['obj_Name'];
 	}
 }
 $Names=json_encode($Names);
