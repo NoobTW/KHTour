@@ -1,6 +1,6 @@
 <?php
 require_once('./connect.php');
-$sth = $dbh->query("SELECT * FROM `restaurant`", PDO::FETCH_ASSOC);
+$sth = $dbh->query("SELECT * FROM `object` WHERE obj_Type = 1", PDO::FETCH_ASSOC);
 $rows = $sth->fetchAll();
 $rows = removePrefix($rows);
 $rows=json_encode($rows);
@@ -10,7 +10,7 @@ function removePrefix(array $input) {
 
     $return = array();
     foreach ($input as $key => $value) {
-        if (strpos($key, 'res_') === 0)
+        if (strpos($key, 'obj_') === 0)
             $key = substr($key, 4);
 
         if (is_array($value))
