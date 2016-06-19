@@ -55,7 +55,6 @@ $(function(){
 	});
 
 	$('#like').click(function() {
-		console.log(123);
 		displayFavorite();
 	});
 
