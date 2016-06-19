@@ -1,5 +1,4 @@
 $(function(){
-	$('#star-rating').rating();
 	$('.content').height($(window).height() - $('.wrapper').height() + $('.content').height());
 	if(navigator.geolocation){
 		navigator.geolocation.getCurrentPosition(handleGetCurrentPosition, onError);
@@ -10,7 +9,6 @@ $(function(){
 			$(this).html('地圖顯示');
 			$('#map').hide();
 			$('#list').show();
-			getcard();
 		}else{
 			$(this).html('清單顯示');
 			$('#map').show();
@@ -57,15 +55,39 @@ $(function(){
 			source: res
 		});
 	})
-	
+
 	$('#search_go').click(function(){
 		search($('#search').val())
 	});
 	$('#search').keypress(function(e){
 		if(e.which == 13) search($('#search').val());
 	});
+	$('#search').on('input', function(){
+		$('.card').show();
+	})
+	$('body').delegate('.card', 'click', function(){
+		openCard($(this));
+	})
 
+	$('body').delegate('.card_love', 'click', function(){
+		var target_name=$(this).prev().html();
+		$.post('add_favorite.php', {target: target_name}, function(data) {
+			console.log('123');
+		});
+	})
 });
+
+function openCard(card){
+	var pic = card.find('.card_pic');
+	if(pic.is(":visible")){
+		card.find('.card_pic').hide('fast');
+		card.find('.card_desc').hide('fast');
+	}else{
+		card.find('.card_picture').attr('src', card.find('.card_picture').attr('data-src'));
+		card.find('.card_pic').show('fast');
+		card.find('.card_desc').show('fast');
+	}
+}
 
 var mapScale = 11;
 var deviceWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
@@ -143,6 +165,7 @@ function loadAttraction(){
 	$('#list').html('');
 
 	$.getJSON( "./api/getAttraction.php", function( data ) {
+	//$.getJSON("https://data.kaohsiung.gov.tw/Opendata/DownLoad.aspx?Type=2&CaseNo1=AV&CaseNo2=2&FileType=1&Lang=C&FolderType", function(data){
 		dataAttraction = data;
 		var i=0;
 		markerAttraction = [];
@@ -153,10 +176,22 @@ function loadAttraction(){
 
 			markerAttraction.push(L.marker([latitude, longitude]).addTo(map));
 			popupAttraction.push(markerAttraction[i].bindPopup(data[i].Name))
-			
-			
+
+			$('#list').append(' \
+			<div class="card"> \
+				<div class="card_title">' + data[i].Name + '</div> \
+				<div class="card_love"><i class="fa fa-heart-o"></i></div> \
+				<div class="card_pic"><img class="card_picture" data-src="' + data[i].Picture1.replace("http", "https") + '" alt="" /></div> \
+				<div class="card_desc"> \
+					<div class="card_tel"><i class="fa fa-phone"></i> ' + data[i].Tel.replace('886-', '0') + '</div> \
+					<div class="card_addr"><i class="fa fa-map-marker"></i> ' + data[i].Add + '</div> \
+					<div class="card_opentime"><i class="fa fa-clock-o"></i> ' + data[i].Opentime + '</div> \
+					<div class="card_description">' + data[i].Description + '</div> \
+				</div> \
+				<div class="clear"></div> \
+			</div>');
 		}
-		
+
 	});
 }
 
@@ -173,6 +208,7 @@ function loadRestaurant(){
 	$('#list').html('');
 
 	$.getJSON( "./api/getRestaurant.php", function( data ) {
+	//$.getJSON("https://data.kaohsiung.gov.tw/Opendata/DownLoad.aspx?Type=2&CaseNo1=AV&CaseNo2=1&FileType=1&Lang=C&FolderType=", function(data){
 		dataRestaurant = data;
 		var i=0;
 		markerRestaurant = [];
@@ -183,8 +219,20 @@ function loadRestaurant(){
 
 			markerRestaurant.push(L.marker([latitude, longitude], {icon: redMarker}).addTo(map));
 			popupRestaurant.push(markerRestaurant[i].bindPopup(data[i].Name))
-			
-			
+
+			$('#list').append(' \
+			<div class="card"> \
+				<div class="card_title">' + data[i].Name + '</div> \
+				<div class="card_love"><i class="fa fa-heart-o"></i></div> \
+				<div class="card_pic"><img class="card_picture" data-src="' + data[i].Picture1.replace("http", "https") + '" alt="" /></div> \
+				<div class="card_desc"> \
+					<div class="card_tel"><i class="fa fa-phone"></i> ' + data[i].Tel.replace('886-', '0') + '</div> \
+					<div class="card_addr"><i class="fa fa-map-marker"></i> ' + data[i].Add + '</div> \
+					<div class="card_opentime"><i class="fa fa-clock-o"></i> ' + data[i].Opentime + '</div> \
+					<div class="card_description">' + data[i].Description + '</div> \
+				</div> \
+				<div class="clear"></div> \
+			</div>');
 		}
 	});
 }
@@ -192,12 +240,12 @@ function loadRestaurant(){
 function search(keyword){
 	var isFind = false;
 	var lat, lng;
-	if(dataAttraction !== undefined && dataRestaurant !== undefined){	
+	if(dataAttraction !== undefined && dataRestaurant !== undefined){
 		for(var i=0;i<dataAttraction.length;i++){
 			if(dataAttraction[i].Name == keyword){
 				isFind = true;
 				lng = dataAttraction[i].Px;
-				lat = dataAttraction[i].py;
+				lat = dataAttraction[i].Py;
 				map.closePopup();
 				markerAttraction[i].openPopup();
 				break;
@@ -218,9 +266,13 @@ function search(keyword){
 		if(isFind){
 			map.panTo(new L.LatLng(lat, lng));
 			map.setZoom(17);
+			$('.card').filter(function(){
+				return $(this).find('.card_title').text() == keyword;
+			}).show().siblings().hide();
 		}
 	}
 }
+
 
 var isFacebookLogin = false;
 var user = [];
@@ -261,40 +313,4 @@ function statusChangeCallback(response) {
 
 
 	}
-<<<<<<< HEAD
-}
-
-function parseXml(xml) {
-	var dom = null;
-	if (window.DOMParser) {
-		try {
-			dom = (new DOMParser()).parseFromString(xml, "text/xml");
-		}
-		catch (e) { dom = null; }
-	}else if (window.ActiveXObject) {
-		try {
-			dom = new ActiveXObject('Microsoft.XMLDOM');
-			dom.async = false;
-			if (!dom.loadXML(xml)) // parse error ..
-
-				console.log(dom.parseError.reason + dom.parseError.srcText);
-		}
-		catch (e) { dom = null; }
-	}
-	else
-		console.log("cannot parse xml string!");
-	return dom;
-}
-
-function getcard () {
-	 $.get( "attractioncard.php", function( data ) {
-		$( '#list').html( data );
-		alert( "Load was performed." );
-	});
-	$('#star-rating').rating();
-	$('#list').accordion({
-		collapsible: true,activate: false
-	});
-=======
->>>>>>> 8d8064bebfdbb3f9b5a527d3f38d720f5bab937d
 }

@@ -251,6 +251,10 @@ input[type="submit"]:active{
 	border: none;
 }
 
+#list{
+	display: none;
+}
+
 .clear{
 	clear: both;
 }
@@ -261,40 +265,49 @@ input[type="submit"]:active{
   overflow-y: auto;
   overflow-x: auto;
 }
-<<<<<<< HEAD
 
-#list{
+.card{
+	border: 1px solid black;
+	border-radius: 10px;
+	padding: .5rem;
+	margin: .5rem;
+	position: relative;
+}
+
+.card_love{
+	color: #FF4500;
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	padding: 3px;
+	border-radius: 3px;
+}
+
+.card_title{
+	font-size: 1.2rem;
+	text-align: left;
+	margin: .3rem;
+}
+
+.card_pic{
+	float: left;
+	width: 30%;
 	display: none;
 }
 
-.card{
-            margin-top: 10px;
-            padding: 1rem;
-            background: #eceff1;
-         }
-
-.pic{
-    float: left;
-    width: 200px;
-    height: 200px;
+.card_picture{
+	width: 100%;
+	height: auto;
 }
- .pic img{
-    width: 100%;
-    height: 100%;
- }
 
- .descrip{
-    float: left;
-    width: 300px;
-    margin-left: 30px;
- }
-
- .rate, .address, .illustrate{
-    margin-top: 10px;
- }
-
-.illustrate{
-    line-height: 1.5
+.card_desc{
+	float: right;
+	width: 68%;
+	text-align: left;
+	line-height: 1.25;
+	display: none;
 }
-=======
->>>>>>> 8d8064bebfdbb3f9b5a527d3f38d720f5bab937d
+
+.card_tel, .card_opentime, .card_addr{
+	font-size: .95rem;
+}

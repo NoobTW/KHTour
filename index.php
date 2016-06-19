@@ -6,15 +6,10 @@
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css" />
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css" />
 	<link rel="stylesheet" href="./style.css"/>
-<<<<<<< HEAD
-	<link rel="stylesheet" href="./css/rating.css">
-=======
 	<link rel="stylesheet" href="./css/leaflet.css"/>
 	<link rel="stylesheet" href="./css/leaflet.awesome-markers.css" />
 	<link rel="stylesheet" href="./css/rating.css"/>
->>>>>>> 8d8064bebfdbb3f9b5a527d3f38d720f5bab937d
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script src="./js/rating.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 	<script src="./leaflet.js"></script>
 	<script src="./leaflet.awesome-markers.js"></script>
