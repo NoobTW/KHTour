@@ -353,10 +353,12 @@ function displayFavorite(){
 	if ($('#showList').text()==='清單顯示') $('#showList').click();
 	
 	if($('#list').find('.fa-heart-o').is(':visible')){
+		$('#like').css('background', '#8B0000');
 		$('.card').filter(function(){
 			return $(this).find('.fa-heart-o').length>0;
 		}).hide();
 	}else{
+		$('#like').css('background', '#C75C5C');
 		$('.card').show();
 	}
 }
