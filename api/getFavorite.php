@@ -3,7 +3,6 @@ require_once('./connect.php');
 session_start();
 $Names=[];
 $userId=$_SESSION['user_id'];
-$userId='1136582603031323';
 
 $sth = $dbh->query("SELECT f_target FROM `favorite` WHERE f_user='$userId'", PDO::FETCH_ASSOC);
 $rows = $sth->fetchAll();
