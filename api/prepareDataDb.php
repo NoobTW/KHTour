@@ -7,7 +7,7 @@ $data = json_decode($data, true); // 將json字串轉成陣列
 echo count($data);
 echo "<br>";
 $i=1;
-$sth = $dbh->prepare("INSERT INTO restaurant(`res_Id`,`res_Name`,`res_Description`,`res_Add`,`res_Zipcode`, `res_Tel`,`res_Opentime`,`res_Website`,`res_Picture1`,`res_Picdescribe1`,`res_Px`,`res_Py`,`res_Class`,`res_Changetime`) VALUES(:id, :name, :description, :add, :zipcode, :tel, :opentime, :website,:picture1, :Picdescribe1, :px, :py, :class, :changetime)");
+$sth = $dbh->prepare("INSERT INTO object(`obj_Id`,`obj_Name`,`obj_Description`,`obj_Add`,`obj_Zipcode`, `obj_Tel`,`obj_Opentime`,`obj_Website`,`obj_Picture1`,`obj_Picdescribe1`,`obj_Px`,`obj_Py`,`obj_Class`,`obj_Changetime`, `obj_Type`) VALUES(:id, :name, :description, :add, :zipcode, :tel, :opentime, :website,:picture1, :Picdescribe1, :px, :py, :class, :changetime, 1)");
 foreach ($data as $value) {
 	$sth->bindParam(':id',$value['Id'],PDO::PARAM_STR);
 	$sth->bindParam(':name',$value['Name'],PDO::PARAM_STR);
@@ -40,7 +40,7 @@ $data = file_get_contents($url); // 取得json字串
 $data = json_decode($data, true); // 將json字串轉成陣列
 echo count($data);
 echo "<br>";
-$sth = $dbh->prepare("INSERT INTO attraction(`att_Id`,`att_Name`,`att_Zone`,`att_Toldescribe`, `att_Description`,`att_Tel`,`att_Add`,`att_Travellinginfo`,`att_Opentime`,`att_Picture1`,`att_Picdescribe1`,`att_Gov`,`att_Px`,`att_Py`,`att_Class1`,`att_Class2`,`att_Level`,`att_Website`,`att_Parkinginfo_px`,`att_Parkinginfo_py`,`att_Ticketinfo`,`att_Remarks`,`att_Changetime`) VALUES(:id, :name, :zone, :toldescribe, :description, :tel, :add, :travellinginfo,:opentime, :picture1, :picdescribe1, :gov, :px, :py,:class1,:class2,:level,:website,:parkinginfo_px,:parkinginfo_py,:ticketinfo,:remarks,:changetime)");
+$sth = $dbh->prepare("INSERT INTO object(`obj_Id`,`obj_Name`,`obj_Zone`,`obj_Toldescribe`, `obj_Description`,`obj_Tel`,`obj_Add`,`obj_Travellinginfo`,`obj_Opentime`,`obj_Picture1`,`obj_Picdescribe1`,`obj_Gov`,`obj_Px`,`obj_Py`,`obj_Class1`,`obj_Class2`,`obj_Level`,`obj_Website`,`obj_Parkinginfo_px`,`obj_Parkinginfo_py`,`obj_Ticketinfo`,`obj_Remarks`,`obj_Changetime`, `obj_Type`) VALUES(:id, :name, :zone, :toldescribe, :description, :tel, :add, :travellinginfo,:opentime, :picture1, :picdescribe1, :gov, :px, :py,:class1,:class2,:level,:website,:parkinginfo_px,:parkinginfo_py,:ticketinfo,:remarks,:changetime, 0)");
 $i=1;
 foreach ($data as $value) {
 	$sth->bindParam(':id',$value['Id'],PDO::PARAM_STR);
