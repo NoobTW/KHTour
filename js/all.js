@@ -197,6 +197,7 @@ function loadAttraction(){
 			var longitude = parseFloat(data[i].Px);
 
 			var m = L.marker([latitude, longitude], {icon: blueMarker}).bindPopup(data[i].Name);
+
 			markerAttraction.push(m);
 			markerClustersAttraction.addLayer(m);
 
@@ -204,6 +205,7 @@ function loadAttraction(){
 			<div class="card"> \
 				<div class="card_title">' + data[i].Name + '</div> \
 				<div class="card_love"><i class="fa fa-heart-o"></i></div> \
+				<div class="card_map"><i class="fa fa-map-pin""></i></div> \
 				<div class="card_pic"><img class="card_picture" data-src="' + data[i].Picture1.replace("http", "https") + '" alt="" /></div> \
 				<div class="card_desc"> \
 					<div class="card_tel"><i class="fa fa-phone"></i> ' + data[i].Tel.replace('886-', '0') + '</div> \
@@ -249,6 +251,7 @@ function loadRestaurant(){
 			<div class="card"> \
 				<div class="card_title">' + data[i].Name + '</div> \
 				<div class="card_love"><i class="fa fa-heart-o"></i></div> \
+				<div class="card_map"><i class="fa fa-map-pin""></i></div> \
 				<div class="card_pic"><img class="card_picture" data-src="' + data[i].Picture1.replace("http", "https") + '" alt="" /></div> \
 				<div class="card_desc"> \
 					<div class="card_tel"><i class="fa fa-phone"></i> ' + data[i].Tel.replace('886-', '0') + '</div> \
@@ -301,13 +304,13 @@ function search(keyword){
 }
 
 function route(via){
-	
+
 	for(var i=0;i<via.length;i++){
 			via[i] = L.latLng(via[i]);
 	}
-	
+
 	L.Routing.control({
-			waypoints: via, 
+			waypoints: via,
 			routeWhileDragging: true
 		}).addTo(map);
 }
