@@ -118,10 +118,10 @@ if(deviceWidth > 768){
 }
 var map;
 var isMapAvailable = false;
-//var markerRestaurant = [];
-var popupRestaurant = [];
-//var markerAttraction = [];
-var popupAttraction = [];
+var markerRestaurant = [];
+//var popupRestaurant = [];
+var markerAttraction = [];
+//var popupAttraction = [];
 
 var markerClustersRestaurant = L.markerClusterGroup({iconCreateFunction: function(cluster) {return new L.DivIcon({ html: '<b>' + cluster.getChildCount() + '</b>' });}});
 var markerClustersAttraction = L.markerClusterGroup({iconCreateFunction: function(cluster) {return new L.DivIcon({ html: '<b>' + cluster.getChildCount() + '</b>' });}});
@@ -192,11 +192,16 @@ function loadAttraction(){
 
 			var latitude = parseFloat(data[i].Py);
 			var longitude = parseFloat(data[i].Px);
+<<<<<<< HEAD
 
 			//markerAttraction.push(L.marker([latitude, longitude]).addTo(map));
 			//popupAttraction.push(markerAttraction[i].bindPopup(data[i].Name))
 
+=======
+			
+>>>>>>> 59b5f0e45c64c0e2c30188050d8a88a407422258
 			var m = L.marker([latitude, longitude]).bindPopup(data[i].Name);
+			markerAttraction.push(m);
 			markerClustersAttraction.addLayer(m);
 
 			$('#list').append(' \
@@ -239,11 +244,16 @@ function loadRestaurant(){
 
 			var latitude = parseFloat(data[i].Py);
 			var longitude = parseFloat(data[i].Px);
+<<<<<<< HEAD
 
 			//markerRestaurant.push(L.marker([latitude, longitude], {icon: redMarker}).addTo(map));
 			//popupRestaurant.push(markerRestaurant[i].bindPopup(data[i].Name))
 
+=======
+		
+>>>>>>> 59b5f0e45c64c0e2c30188050d8a88a407422258
 			var m = L.marker([latitude, longitude], {icon: redMarker}).bindPopup(data[i].Name);
+			markerRestaurant.push(m);
 			markerClustersRestaurant.addLayer(m);
 
 			$('#list').append(' \
@@ -301,12 +311,14 @@ function search(keyword){
 	}
 }
 
-function route(start, end, via){
+function route(via){
+	
+	for(var i=0;i<via.length;i++){
+			via[i] = L.latLng(via[i]);
+	}
+	
 	L.Routing.control({
-			waypoints: [
-				L.latLng(22.5914348,120.3132427),
-				L.latLng(22.7344154,120.282984)
-			],
+			waypoints: via, 
 			routeWhileDragging: true
 		}).addTo(map);
 }
