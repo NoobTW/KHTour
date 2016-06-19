@@ -425,19 +425,21 @@ function getFavorite () {
 }
 
 function displayFavorite(){
-	if($('#list').find('.fa-heart-o').is(':visible')){
-		$('#like').css('background', '#8B0000');
-		$('.card').filter(function(){
-			return $(this).find('.fa-heart-o').length>0;
-		}).hide();
-		$('#btnNavigate').show();
-	}else{
-		$('#like').css('background', '#C75C5C');
-		$('.card').show();
-		$('#btnNavigate').hide();
-	}
-	
 	if ($('#showList').text()==='清單顯示') $('#showList').click();
+	
+	setTimeout(function(){
+		if($('#list').find('.fa-heart-o').is(':visible')){
+			$('#like').css('background', '#8B0000');
+			$('.card').filter(function(){
+				return $(this).find('.fa-heart-o').length>0;
+			}).hide();
+			$('#btnNavigate').show();
+		}else{
+			$('#like').css('background', '#C75C5C');
+			$('.card').show();
+			$('#btnNavigate').hide();
+		}
+	}, 100);
 }
 
 function statusChangeCallback(response) {
