@@ -10,7 +10,7 @@ $(function(){
 			$('#map').hide();
 			$('#list').show();
 			$('#btnNavigate').show();
-			map.removeControl(routeControl);
+			if(routeControl !== undefined) map.removeControl(routeControl);
 		}else{
 			$(this).html('清單顯示');
 			$('#map').show();
