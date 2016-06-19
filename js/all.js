@@ -256,20 +256,8 @@ function loadAttraction(){
 			var latitude = parseFloat(data[i].Py);
 			var longitude = parseFloat(data[i].Px);
 
-<<<<<<< HEAD
-			//markerAttraction.push(L.marker([latitude, longitude]).addTo(map));
-			//popupAttraction.push(markerAttraction[i].bindPopup(data[i].Name))
-
-
-			var m = L.marker([latitude, longitude]).bindPopup(data[i].Name);
 			var m = L.marker([latitude, longitude], {icon: blueMarker});
 			m.bindPopup(data[i].Name);
-			var m = L.marker([latitude, longitude], {icon: blueMarker});
-			m.bindPopup(data[i].Name);
-=======
-			var m = L.marker([latitude, longitude], {icon: blueMarker});
-			m.bindPopup(data[i].Name);
->>>>>>> 79491967ff70a944599619d0571a6c72f670d170
 			markerAttraction.push(m);
 			markerClustersAttraction.addLayer(m);
 
@@ -314,15 +302,6 @@ function loadRestaurant(){
 
 			var latitude = parseFloat(data[i].Py);
 			var longitude = parseFloat(data[i].Px);
-<<<<<<< HEAD
-			//markerRestaurant.push(L.marker([latitude, longitude], {icon: redMarker}).addTo(map));
-			//popupRestaurant.push(markerRestaurant[i].bindPopup(data[i].Name))
-
-
-
-			var m = L.marker([latitude, longitude], {icon: redMarker}).bindPopup(data[i].Name);
-=======
->>>>>>> 79491967ff70a944599619d0571a6c72f670d170
 
 			var m = L.marker([latitude, longitude], {icon: redMarker});
 			m.bindPopup(data[i].Name);
