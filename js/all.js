@@ -10,6 +10,7 @@ $(function(){
 			$('#map').hide();
 			$('#list').show();
 			$('#btnNavigate').show();
+			map.removeControl(routeControl);
 		}else{
 			$(this).html('清單顯示');
 			$('#map').show();
@@ -185,6 +186,8 @@ var markerRestaurant = [];
 //var popupRestaurant = [];
 var markerAttraction = [];
 //var popupAttraction = [];
+
+var routeControl;
 
 //var markerClustersRestaurant = L.markerClusterGroup({maxClusterRadius:20, iconCreateFunction: function(cluster) {return new L.DivIcon({ html: '<b>' + cluster.getChildCount() + '</b>' });}});
 //var markerClustersAttraction = L.markerClusterGroup({maxClusterRadius:20, iconCreateFunction: function(cluster) {return new L.DivIcon({ html: '<b>' + cluster.getChildCount() + '</b>' });}});
@@ -375,10 +378,10 @@ function route(via){
 			via[i] = L.latLng(via[i]);
 	}
 
-	L.Routing.control({
-			waypoints: via,
-			routeWhileDragging: true
-		}).addTo(map);
+	routeControl = L.Routing.control({
+		waypoints: via,
+		routeWhileDragging: true
+	}).addTo(map);
 }
 
 
