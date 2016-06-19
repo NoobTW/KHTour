@@ -79,7 +79,7 @@ function xmlToArray($xml, $options = array()) {
 $start = $_GET['start'];
 $end = $_GET['end'];
 
-$via = $_GET['via'];
+@$via = $_GET['via'];
 
 
 //$data = file_get_contents('http://openls.geog.uni-heidelberg.de/route?start=120.3132427,22.5914348&end=120.282984,22.7344154&via=&lang=zh-TW&distunit=KM&routepref=Car&weighting=Fastest&avoidAreas=&useTMC=false&noMotorways=false&noTollways=false&noUnpavedroads=false&noSteps=false&noFerries=false&instructions=false');
