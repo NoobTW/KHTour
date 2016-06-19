@@ -16,6 +16,7 @@
 	<script src="./leaflet.js"></script>
 	<script src="./leaflet.awesome-markers.js"></script>
 	<script src="./leaflet-routing-machine.min.js"></script>
+	<script src="./leaflet.markercluster.min.js"></script>
 	<script src="./js/jquery.rating.js"></script>
 	<script src="./js/all.js"></script>
 </head>
