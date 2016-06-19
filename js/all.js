@@ -425,8 +425,6 @@ function getFavorite () {
 }
 
 function displayFavorite(){
-	if ($('#showList').text()==='清單顯示') $('#showList').click();
-
 	if($('#list').find('.fa-heart-o').is(':visible')){
 		$('#like').css('background', '#8B0000');
 		$('.card').filter(function(){
@@ -438,6 +436,8 @@ function displayFavorite(){
 		$('.card').show();
 		$('#btnNavigate').hide();
 	}
+	
+	if ($('#showList').text()==='清單顯示') $('#showList').click();
 }
 
 function statusChangeCallback(response) {
