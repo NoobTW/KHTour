@@ -70,6 +70,7 @@ $(function(){
 	})
 
 	$('body').delegate('.card_love', 'click', function(){
+<<<<<<< HEAD
 		var $this=$(this);
 		var target_name=$this.prev().html();
 		if ($this.children('i').attr('class') === 'fa fa-heart-o') {
@@ -81,6 +82,12 @@ $(function(){
 				$this.children('i').attr('class','fa fa-heart-o');
 			});
 		}
+=======
+		var target_name=$(this).prev().html();
+		$.post('./api/addFavorite.php', {target: target_name}, function(data) {
+			console.log('123');
+		});
+>>>>>>> 5359c8b12dbce8be93f7d0a40fc358529e817f7b
 	})
 
 
@@ -111,10 +118,13 @@ if(deviceWidth > 768){
 }
 var map;
 var isMapAvailable = false;
-var markerRestaurant = [];
+//var markerRestaurant = [];
 var popupRestaurant = [];
-var markerAttraction = [];
+//var markerAttraction = [];
 var popupAttraction = [];
+
+var markerClustersRestaurant = L.markerClusterGroup({iconCreateFunction: function(cluster) {return new L.DivIcon({ html: '<b>' + cluster.getChildCount() + '</b>' });}});
+var markerClustersAttraction = L.markerClusterGroup({iconCreateFunction: function(cluster) {return new L.DivIcon({ html: '<b>' + cluster.getChildCount() + '</b>' });}});
 
 var dataRestaurant;
 var dataAttraction;
@@ -165,12 +175,12 @@ function getMap(latitude, longitude){
 }
 
 function loadAttraction(){
-	for(var i=0;i<markerAttraction.length;i++){
+	/*for(var i=0;i<markerAttraction.length;i++){
 		map.removeLayer(markerAttraction[i]);
 	}
 	for(var i=0;i<markerRestaurant.length;i++){
 		map.removeLayer(markerRestaurant[i]);
-	}
+	}*/
 	$('#list').html('');
 
 	$.getJSON( "./api/getAttraction.php", function( data ) {
@@ -183,8 +193,11 @@ function loadAttraction(){
 			var latitude = parseFloat(data[i].Py);
 			var longitude = parseFloat(data[i].Px);
 
-			markerAttraction.push(L.marker([latitude, longitude]).addTo(map));
-			popupAttraction.push(markerAttraction[i].bindPopup(data[i].Name))
+			//markerAttraction.push(L.marker([latitude, longitude]).addTo(map));
+			//popupAttraction.push(markerAttraction[i].bindPopup(data[i].Name))
+			
+			var m = L.marker([latitude, longitude]).bindPopup(data[i].Name);
+			markerClustersAttraction.addLayer(m);
 
 			$('#list').append(' \
 			<div class="card"> \
@@ -200,7 +213,12 @@ function loadAttraction(){
 				<div class="clear"></div> \
 			</div>');
 		}
+<<<<<<< HEAD
 		getFavorite();
+=======
+		map.addLayer(markerClustersAttraction);
+
+>>>>>>> 5359c8b12dbce8be93f7d0a40fc358529e817f7b
 	});
 }
 
@@ -208,12 +226,12 @@ function loadRestaurant(){
 	var redMarker = L.AwesomeMarkers.icon({
 		icon: 'coffee', prefix: 'fa', markerColor: '#ff9800', iconColor: '#f28f82'
 	});
-	for(var i=0;i<markerAttraction.length;i++){
+	/*for(var i=0;i<markerAttraction.length;i++){
 		map.removeLayer(markerAttraction[i]);
 	}
 	for(var i=0;i<markerRestaurant.length;i++){
 		map.removeLayer(markerRestaurant[i]);
-	}
+	}*/
 	$('#list').html('');
 
 	$.getJSON( "./api/getRestaurant.php", function( data ) {
@@ -226,8 +244,11 @@ function loadRestaurant(){
 			var latitude = parseFloat(data[i].Py);
 			var longitude = parseFloat(data[i].Px);
 
-			markerRestaurant.push(L.marker([latitude, longitude], {icon: redMarker}).addTo(map));
-			popupRestaurant.push(markerRestaurant[i].bindPopup(data[i].Name))
+			//markerRestaurant.push(L.marker([latitude, longitude], {icon: redMarker}).addTo(map));
+			//popupRestaurant.push(markerRestaurant[i].bindPopup(data[i].Name))
+			
+			var m = L.marker([latitude, longitude], {icon: redMarker}).bindPopup(data[i].Name);
+			markerClustersRestaurant.addLayer(m);
 
 			$('#list').append(' \
 			<div class="card"> \
@@ -243,7 +264,12 @@ function loadRestaurant(){
 				<div class="clear"></div> \
 			</div>');
 		}
+<<<<<<< HEAD
 		getFavorite();
+=======
+		map.addLayer(markerClustersRestaurant);
+		
+>>>>>>> 5359c8b12dbce8be93f7d0a40fc358529e817f7b
 	});
 }
 
@@ -281,6 +307,16 @@ function search(keyword){
 			}).show().siblings().hide();
 		}
 	}
+}
+
+function route(start, end, via){
+	L.Routing.control({
+			waypoints: [
+				L.latLng(22.5914348,120.3132427),
+				L.latLng(22.7344154,120.282984)
+			],
+			routeWhileDragging: true
+		}).addTo(map);
 }
 
 
