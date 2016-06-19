@@ -1,5 +1,5 @@
 $(function(){
-	$('.content').height($(window).height() - $('.wrapper').height() + $('.content').height());
+	$('#map').height($(window).height() - $('.wrapper').height() + $('.content').height());
 	if(navigator.geolocation){
 		navigator.geolocation.getCurrentPosition(handleGetCurrentPosition, onError);
 	}
