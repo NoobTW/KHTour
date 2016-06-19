@@ -9,6 +9,7 @@ $(function(){
 			$(this).html('地圖顯示');
 			$('#map').hide();
 			$('#list').show();
+			$('#btnNavigate').show();
 		}else{
 			$(this).html('清單顯示');
 			$('#map').show();
@@ -99,6 +100,52 @@ $(function(){
 		if ($('#showList').text()==='地圖顯示') $('#showList').click();
 		search(name);
 		$('.card').show();
+	});
+	
+	$('#btnNavigate').click(function(){
+		var via = [];
+		
+		$('#list').find('.fa-heart').each(function(){
+			via.push($(this).parent().find('.card_title').text());
+		});
+		
+		for(var i=0;i<via.length;i++){
+			var keyword = via[i];
+			console.log(keyword);
+			var isFind = false;
+			var lat, lng;
+			if(dataAttraction !== undefined && dataRestaurant !== undefined){
+				for(var i=0;i<dataAttraction.length;i++){
+					if(dataAttraction[i].Name == keyword){
+						isFind = true;
+						lng = dataAttraction[i].Px;
+						lat = dataAttraction[i].Py;
+						map.closePopup();
+						markerAttraction[i].openPopup();
+						break;
+					}
+				}
+				if(!isFind){
+					for(var i=0;i<dataRestaurant.length;i++){
+						if(dataRestaurant[i].Name == keyword){
+							isFind = true;
+							lng = dataRestaurant[i].Px;
+							lat = dataRestaurant[i].Py;
+							map.closePopup();
+							markerRestaurant[i].openPopup();
+							break;
+						}
+					}
+				}
+				if(isFind){
+					via[i] = [lat, lng];
+				}
+			}
+		}
+		
+		route(via);
+		if ($('#showList').text()==='地圖顯示') $('#showList').click();
+		console.log(via);
 	});
 });
 
@@ -373,9 +420,11 @@ function displayFavorite(){
 		$('.card').filter(function(){
 			return $(this).find('.fa-heart-o').length>0;
 		}).hide();
+		$('#btnNavigate').show();
 	}else{
 		$('#like').css('background', '#C75C5C');
 		$('.card').show();
+		$('#btnNavigate').hide();
 	}
 }
 
