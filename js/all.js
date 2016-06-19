@@ -21,10 +21,6 @@ $(function(){
 		width: $('.wrapper').width(),
 	});
 
-	$('#btnSaveRoute').css({
-		width: $('.wrapper').width(),
-	});
-
 	$('#findAttraction').click(function(event) {
 		if ($(this).html()==='找景點') {
 			$(this).html('找全部');
@@ -148,7 +144,6 @@ $(function(){
 		
 		route(via);
 		if ($('#showList').text()==='地圖顯示') $('#showList').click();
-		$('#btnSaveRoute').show();
 	});
 });
 

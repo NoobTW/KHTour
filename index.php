@@ -53,16 +53,6 @@
 				<div class="button" id="showList">清單顯示</div>
 				<div class="button" id="findAttraction">找餐飲</div>
 			</div>
-			<div class="opt_right">
-				<div class="button" id="sortByPopularity">
-				<select name="" id="">
-					<option value="">依人氣排列</option>
-					<option value="">依評分排列</option>
-					<option value="">依遠近</option>
-				</select>
-
-				</div>
-			</div>
 			<div class="clear"></div>
 			<div id="currentLocation"></div>
 		</section>

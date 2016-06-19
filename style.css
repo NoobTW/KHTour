@@ -204,10 +204,6 @@ input[type="submit"]:active{
 	float: left;
 }
 
-.opt_right{
-	float: right;
-}
-
 .button{
 	padding: .5rem;
 	display: inline-block;
@@ -241,16 +237,6 @@ input[type="submit"]:active{
 	border: 2px #42a5f5 solid;
 }
 
-#sortByPopularity{
-	background: white;
-	padding: 0;
-}
-
-#sortByPopularity select{
-	padding: .5rem;
-	border: none;
-}
-
 #list{
 	background: #e1f5fe;
 	display: none;
@@ -273,22 +259,6 @@ input[type="submit"]:active{
 }
 
 #btnNavigate:active{
-	background: #f44336;
-	color: #000000;
-}
-
-#btnSaveRoute{
-	text-align: center;
-	background: #000000;
-	color: #ffffff;
-	height: 50px;
-	line-height: 50px;
-	position: fixed;
-	bottom: 0;
-	display: none;
-}
-
-#btnSaveRoute:active{
 	background: #f44336;
 	color: #000000;
 }
