@@ -175,6 +175,9 @@ function getMap(latitude, longitude){
 }
 
 function loadAttraction(){
+	var blueMarker = L.AwesomeMarkers.icon({
+		icon: 'tree', prefix: 'fa', markerColor: '#00f', iconColor: '#00f'
+	});
 	/*for(var i=0;i<markerAttraction.length;i++){
 		map.removeLayer(markerAttraction[i]);
 	}
@@ -193,7 +196,7 @@ function loadAttraction(){
 			var latitude = parseFloat(data[i].Py);
 			var longitude = parseFloat(data[i].Px);
 
-			var m = L.marker([latitude, longitude]).bindPopup(data[i].Name);
+			var m = L.marker([latitude, longitude], {icon: blueMarker}).bindPopup(data[i].Name);
 			markerAttraction.push(m);
 			markerClustersAttraction.addLayer(m);
 
