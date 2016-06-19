@@ -350,23 +350,14 @@ function getFavorite () {
 }
 
 function displayFavorite(){
-	if ($('#showList').html()==='清單顯示') {
-		$('#showList').click();
-		if($('.card').find('.fa-heart-o').length>0){
-	    		$('.card').filter(function(){
+	if ($('#showList').text()==='清單顯示') $('#showList').click();
+	
+	if($('#list').find('.fa-heart-o').is(':visible')){
+		$('.card').filter(function(){
 			return $(this).find('.fa-heart-o').length>0;
 		}).hide();
-		}else{
-			$('.card').find('.fa-heart-o').show();
-		}
 	}else{
-		if($('.card').find('.fa-heart-o').length>0){
-	    		$('.card').filter(function(){
-			return $(this).find('.fa-heart-o').length>0;
-		}).hide();
-		}else{
-			$('.card').find('.fa-heart-o').show();
-		}
+		$('.card').show();
 	}
 }
 

@@ -252,6 +252,7 @@ input[type="submit"]:active{
 }
 
 #list{
+	background: #e1f5fe;
 	display: none;
 }
 
