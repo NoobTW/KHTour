@@ -71,7 +71,7 @@ $(function(){
 
 	$('body').delegate('.card_love', 'click', function(){
 		var target_name=$(this).prev().html();
-		$.post('add_favorite.php', {target: target_name}, function(data) {
+		$.post('./api/addFavorite.php', {target: target_name}, function(data) {
 			console.log('123');
 		});
 	})
@@ -271,6 +271,16 @@ function search(keyword){
 			}).show().siblings().hide();
 		}
 	}
+}
+
+function route(start, end, via){
+	L.Routing.control({
+			waypoints: [
+				L.latLng(22.5914348,120.3132427),
+				L.latLng(22.7344154,120.282984)
+			],
+			routeWhileDragging: true
+		}).addTo(map);
 }
 
 
