@@ -142,6 +142,13 @@ $(function(){
 			}
 		}
 		
+		if(via.length==1){
+			if(currentLat * currentLng !=0){
+				via.unshift([currentLat, currentLng]);
+			}else{
+				return;
+			}
+		}		
 		route(via);
 		if ($('#showList').text()==='地圖顯示') $('#showList').click();
 	});
@@ -172,6 +179,8 @@ if(deviceWidth > 768){
 }
 var map;
 var isMapAvailable = false;
+var currentLat = 0;
+var currentLng = 0;
 var markerRestaurant = [];
 //var popupRestaurant = [];
 var markerAttraction = [];
@@ -192,6 +201,8 @@ function handleGetCurrentPosition(location){
 	})
 	isMapAvailable = true;
 	getMap(location.coords.latitude, location.coords.longitude);
+	currentLat = location.coords.latitude;
+	currentLng = location.coords.longitude;
 }
 
 function onError(){
@@ -230,7 +241,7 @@ function getMap(latitude, longitude){
 
 function loadAttraction(){
 	var blueMarker = L.AwesomeMarkers.icon({
-		icon: 'tree', prefix: 'fa', markerColor: '#00f', iconColor: '#00f'
+		icon: 'tree', prefix: 'fa', markerColor: 'blue', iconColor: '#00f'
 	});
 	/*for(var i=0;i<markerAttraction.length;i++){
 		map.removeLayer(markerAttraction[i]);
@@ -271,7 +282,7 @@ function loadAttraction(){
 			</div>');
 		}
 		getFavorite();
-		map.addLayer(markerClustersAttraction);
+		//map.addLayer(markerClustersAttraction);
 	});
 }
 
@@ -318,7 +329,7 @@ function loadRestaurant(){
 			</div>');
 		}
 		getFavorite();
-		map.addLayer(markerClustersRestaurant);
+		//map.addLayer(markerClustersRestaurant);
 	});
 }
 

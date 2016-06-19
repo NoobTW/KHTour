@@ -60,8 +60,6 @@
 		<section class="content" id="list">
 		</section>
 		<div id="btnNavigate"><i class="fa fa-location-arrow"></i></div>
-		<div id="btnSaveRoute">儲存路線</div>
-
 	</div>
 </body>
 </html>
