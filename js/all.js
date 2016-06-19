@@ -70,7 +70,6 @@ $(function(){
 	})
 
 	$('body').delegate('.card_love', 'click', function(){
-<<<<<<< HEAD
 		var $this=$(this);
 		var target_name=$this.prev().html();
 		if ($this.children('i').attr('class') === 'fa fa-heart-o') {
@@ -82,12 +81,6 @@ $(function(){
 				$this.children('i').attr('class','fa fa-heart-o');
 			});
 		}
-=======
-		var target_name=$(this).prev().html();
-		$.post('./api/addFavorite.php', {target: target_name}, function(data) {
-			console.log('123');
-		});
->>>>>>> 5359c8b12dbce8be93f7d0a40fc358529e817f7b
 	})
 
 
@@ -213,12 +206,8 @@ function loadAttraction(){
 				<div class="clear"></div> \
 			</div>');
 		}
-<<<<<<< HEAD
 		getFavorite();
-=======
 		map.addLayer(markerClustersAttraction);
-
->>>>>>> 5359c8b12dbce8be93f7d0a40fc358529e817f7b
 	});
 }
 
@@ -264,12 +253,8 @@ function loadRestaurant(){
 				<div class="clear"></div> \
 			</div>');
 		}
-<<<<<<< HEAD
 		getFavorite();
-=======
 		map.addLayer(markerClustersRestaurant);
-		
->>>>>>> 5359c8b12dbce8be93f7d0a40fc358529e817f7b
 	});
 }
 
