@@ -177,8 +177,8 @@ var markerRestaurant = [];
 var markerAttraction = [];
 //var popupAttraction = [];
 
-var markerClustersRestaurant = L.markerClusterGroup({iconCreateFunction: function(cluster) {return new L.DivIcon({ html: '<b>' + cluster.getChildCount() + '</b>' });}});
-var markerClustersAttraction = L.markerClusterGroup({iconCreateFunction: function(cluster) {return new L.DivIcon({ html: '<b>' + cluster.getChildCount() + '</b>' });}});
+//var markerClustersRestaurant = L.markerClusterGroup({maxClusterRadius:20, iconCreateFunction: function(cluster) {return new L.DivIcon({ html: '<b>' + cluster.getChildCount() + '</b>' });}});
+//var markerClustersAttraction = L.markerClusterGroup({maxClusterRadius:20, iconCreateFunction: function(cluster) {return new L.DivIcon({ html: '<b>' + cluster.getChildCount() + '</b>' });}});
 
 var dataRestaurant;
 var dataAttraction;
@@ -251,9 +251,9 @@ function loadAttraction(){
 			var longitude = parseFloat(data[i].Px);
 
 			var m = L.marker([latitude, longitude], {icon: blueMarker});
-			m.bindPopup(data[i].Name);
+			m.bindPopup(data[i].Name).addTo(map);
 			markerAttraction.push(m);
-			markerClustersAttraction.addLayer(m);
+			//markerClustersAttraction.addLayer(m);
 
 			$('#list').append(' \
 			<div class="card"> \
@@ -298,9 +298,9 @@ function loadRestaurant(){
 			var longitude = parseFloat(data[i].Px);
 
 			var m = L.marker([latitude, longitude], {icon: redMarker});
-			m.bindPopup(data[i].Name);
+			m.bindPopup(data[i].Name).addTo(map);
 			markerRestaurant.push(m);
-			markerClustersRestaurant.addLayer(m);
+			//markerClustersRestaurant.addLayer(m);
 
 			$('#list').append(' \
 			<div class="card"> \
