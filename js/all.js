@@ -70,10 +70,15 @@ $(function(){
 	})
 
 	$('body').delegate('.card_love', 'click', function(){
-		var target_name=$(this).prev().html();
-		$.post('add_favorite.php', {target: target_name}, function(data) {
-			console.log('123');
-		});
+		var $this=$(this);
+		var target_name=$this.prev().html();
+		if ($this.children('i').attr('class') === 'fa fa-heart-o') {
+			$.post('./api/addFavorite.php', {target: target_name}, function(data) {
+				$this.children('i').attr('class','fa fa-heart');
+			});
+		}else{
+			console.log(1234);
+		}
 	})
 });
 
@@ -176,11 +181,7 @@ function loadAttraction(){
 
 			markerAttraction.push(L.marker([latitude, longitude]).addTo(map));
 			popupAttraction.push(markerAttraction[i].bindPopup(data[i].Name))
-<<<<<<< HEAD
 
-=======
-			
->>>>>>> 22445b08fe96a9a6822a93fcc534e095b296a42f
 			$('#list').append(' \
 			<div class="card"> \
 				<div class="card_title">' + data[i].Name + '</div> \
@@ -223,11 +224,7 @@ function loadRestaurant(){
 
 			markerRestaurant.push(L.marker([latitude, longitude], {icon: redMarker}).addTo(map));
 			popupRestaurant.push(markerRestaurant[i].bindPopup(data[i].Name))
-<<<<<<< HEAD
 
-=======
-			
->>>>>>> 22445b08fe96a9a6822a93fcc534e095b296a42f
 			$('#list').append(' \
 			<div class="card"> \
 				<div class="card_title">' + data[i].Name + '</div> \

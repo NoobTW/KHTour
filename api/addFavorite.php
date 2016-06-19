@@ -1,6 +1,6 @@
 <?php
 session_start();
-require('./api/connect.php');
+require('./connect.php');
 $userId='1136582603031323';
 $targetName=$_POST['target'];
 $sth = $dbh->query("SELECT obj_Id FROM `object` WHERE obj_Name='$targetName'", PDO::FETCH_ASSOC);
