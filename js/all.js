@@ -192,14 +192,11 @@ function loadAttraction(){
 
 			var latitude = parseFloat(data[i].Py);
 			var longitude = parseFloat(data[i].Px);
-<<<<<<< HEAD
 
 			//markerAttraction.push(L.marker([latitude, longitude]).addTo(map));
 			//popupAttraction.push(markerAttraction[i].bindPopup(data[i].Name))
 
-=======
-			
->>>>>>> 59b5f0e45c64c0e2c30188050d8a88a407422258
+
 			var m = L.marker([latitude, longitude]).bindPopup(data[i].Name);
 			markerAttraction.push(m);
 			markerClustersAttraction.addLayer(m);
@@ -208,6 +205,7 @@ function loadAttraction(){
 			<div class="card"> \
 				<div class="card_title">' + data[i].Name + '</div> \
 				<div class="card_love"><i class="fa fa-heart-o"></i></div> \
+				<div class="card_map"><i class="fa fa-map-pin""></i></div> \
 				<div class="card_pic"><img class="card_picture" data-src="' + data[i].Picture1.replace("http", "https") + '" alt="" /></div> \
 				<div class="card_desc"> \
 					<div class="card_tel"><i class="fa fa-phone"></i> ' + data[i].Tel.replace('886-', '0') + '</div> \
@@ -244,14 +242,10 @@ function loadRestaurant(){
 
 			var latitude = parseFloat(data[i].Py);
 			var longitude = parseFloat(data[i].Px);
-<<<<<<< HEAD
-
 			//markerRestaurant.push(L.marker([latitude, longitude], {icon: redMarker}).addTo(map));
 			//popupRestaurant.push(markerRestaurant[i].bindPopup(data[i].Name))
 
-=======
-		
->>>>>>> 59b5f0e45c64c0e2c30188050d8a88a407422258
+
 			var m = L.marker([latitude, longitude], {icon: redMarker}).bindPopup(data[i].Name);
 			markerRestaurant.push(m);
 			markerClustersRestaurant.addLayer(m);
@@ -260,6 +254,7 @@ function loadRestaurant(){
 			<div class="card"> \
 				<div class="card_title">' + data[i].Name + '</div> \
 				<div class="card_love"><i class="fa fa-heart-o"></i></div> \
+				<div class="card_map"><i class="fa fa-map-pin""></i></div> \
 				<div class="card_pic"><img class="card_picture" data-src="' + data[i].Picture1.replace("http", "https") + '" alt="" /></div> \
 				<div class="card_desc"> \
 					<div class="card_tel"><i class="fa fa-phone"></i> ' + data[i].Tel.replace('886-', '0') + '</div> \
@@ -312,13 +307,13 @@ function search(keyword){
 }
 
 function route(via){
-	
+
 	for(var i=0;i<via.length;i++){
 			via[i] = L.latLng(via[i]);
 	}
-	
+
 	L.Routing.control({
-			waypoints: via, 
+			waypoints: via,
 			routeWhileDragging: true
 		}).addTo(map);
 }
