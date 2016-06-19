@@ -46,7 +46,6 @@
 		</header>
 		<section class="search">
 			<input type="text" id="search" placeholder="搜尋" /><input type="submit" id="search_go" value="GO"/>
-			<div class="hot_search">熱門關鍵字 xxx xxx xxx xxx </div>
 		</section>
 		<section class="options">
 			<div class="opt_left">
